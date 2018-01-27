@@ -5,6 +5,7 @@ from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProper
 from kivy.vector import Vector
 from kivy.clock import Clock
 from tfimgcontroller import FaceRecognition
+from threading import Thread
 
 # from kivy.core.window import Window
 
@@ -35,13 +36,16 @@ class PongGame(Widget):
     player1 = ObjectProperty(None)
     ai_agent = ObjectProperty(None)
     expected_y = None
-    jump = 50
+    jump = 30
     alpha = 0.9
+    playerpos = 0
 
     def __init__(self):
         super(PongGame, self).__init__()
         self.serve_ball()
         self.control = FaceRecognition()
+        t = Thread(target=self.control.capture)
+        t.start()
 
         # self.bind_keyboard()
 
@@ -71,31 +75,6 @@ class PongGame(Widget):
         self.ball.center = self.center
         self.ball.velocity = vel
 
-    def agent_movement(self, dt):
-        delt = (self.width - self.ball.x) / self.ball.velocity_x
-        self.expected_y = (self.ball.velocity_y * delt) + self.ball.y
-        if self.expected_y > self.height:
-            self.expected_y = self.height
-        elif self.expected_y < self.y:
-            self.height = 0
-
-        if random.random() > self.alpha:
-            if abs(self.ai_agent.center_y - self.expected_y) < 90:
-                return None
-            elif self.ai_agent.center_y < self.expected_y:
-                self.ai_agent.center_y += self.jump
-            elif self.ai_agent.center_y > self.expected_y:
-                self.ai_agent.center_y -= self.jump
-            return None
-        else:
-            if abs(self.ai_agent.center_y - self.expected_y) < 1000:
-                return None
-            elif self.ai_agent.center_y < self.expected_y:
-                self.ai_agent.center_y += self.jump
-            elif self.ai_agent.center_y > self.expected_y:
-                self.ai_agent.center_y -= self.jump
-            return None
-
     def bounce(self):
         # bounce of paddles
         self.player1.bounce_ball(self.ball)
@@ -118,39 +97,54 @@ class PongGame(Widget):
             self.jump += 10
             self.serve_ball(vel=(-10, 0))
 
-    def move_player(self):
-        # movement of player paddle
+    def player_movement(self, dt):
+        if abs(self.player1.center_y - self.playerpos) < 90:
+            return None
+        elif self.player1.center_y < self.playerpos:
+            self.player1.center_y += self.jump
+        elif self.player1.center_y > self.playerpos:
+            self.player1.center_y -= self.jump
 
-        if self.control.x > 0.5:
-            if self.player1.y > 0:
-                self.player1.y -= 20
+    def agent_movement(self, dt):
+        if random.random() > self.alpha:
+            if abs(self.ai_agent.center_y - self.expected_y) < 90:
+                return None
+            elif self.ai_agent.center_y < self.expected_y:
+                self.ai_agent.center_y += self.jump
+            elif self.ai_agent.center_y > self.expected_y:
+                self.ai_agent.center_y -= self.jump
+            return None
         else:
-            if self.player1.y < self.height-200:
-                self.player1.y += 20
+            if abs(self.ai_agent.center_y - self.expected_y) < 1000:
+                return None
+            elif self.ai_agent.center_y < self.expected_y:
+                self.ai_agent.center_y += self.jump
+            elif self.ai_agent.center_y > self.expected_y:
+                self.ai_agent.center_y -= self.jump
+            return None
 
     def update(self, dt):
+        delt = (self.width - self.ball.x) / self.ball.velocity_x
+        self.expected_y = (self.ball.velocity_y * delt) + self.ball.y
+        if self.expected_y > self.height:
+            self.expected_y = self.height
+        elif self.expected_y < self.y:
+            self.expected_y = 0
+
+        self.playerpos = self.control.x * self.height
+
         self.ball.move()
 
         self.bounce()
         self.check_win()
 
-        self.move_player()
-
-    """
-    def on_touch_move(self, touch):
-        if touch.x < self.width / 3:
-            self.player1.center_y = touch.y
-        if touch.x > self.width - self.width / 3:
-            self.ai_agent.center_y = touch.y
-    """
-
 
 class AIApp(App):
     def build(self):
         game = PongGame()
-        Clock.schedule_interval(game.update, 1.0/120.0)
-        Clock.schedule_interval(game.agent_movement, 1.0/10.0)
-        Clock.schedule_interval(game.control.capture, 1.0/10.0)
+        Clock.schedule_interval(game.update, 1.0 / 120.0)
+        Clock.schedule_interval(game.agent_movement, 1.0 / 10.0)
+        Clock.schedule_interval(game.player_movement, 1.0 / 10.0)
         return game
 
 
