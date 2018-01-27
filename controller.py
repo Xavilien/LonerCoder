@@ -6,9 +6,7 @@ class FacialRecognition:
         self.face_x = 0
 
         self.cap = cv.VideoCapture(0)
-        self.face_cascade = cv.CascadeClassifier(
-            '/Users/xavilien/.virtualenvs/Hackathon/lib/python3.6/site-packages/cv2/data/'
-            'haarcascade_frontalface_default.xml')
+        self.face_cascade = cv.CascadeClassifier('haarcascade_frontalface_default.xml')
 
     def capture(self, dt):
         # Capture frame-by-frame
