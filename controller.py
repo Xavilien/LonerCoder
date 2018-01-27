@@ -35,3 +35,12 @@ class FacialRecognition:
             return frame, x, y
 
         return False
+
+    def stop(self):
+        print(True)
+        self.cap.release()
+        cv.destroyAllWindows()
+
+
+if __name__ == '__main__':
+    fr = FacialRecognition()

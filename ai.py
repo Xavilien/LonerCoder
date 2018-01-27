@@ -33,6 +33,7 @@ class PongGame(Widget):
     ball = ObjectProperty(None)
     player1 = ObjectProperty(None)
     ai_agent = ObjectProperty(None)
+    expected_y = None
     jump = 50
     alpha = 0.9
 
@@ -70,6 +71,13 @@ class PongGame(Widget):
         self.ball.velocity = vel
 
     def agent_movement(self, dt):
+        delt = (self.width - self.ball.x) / self.ball.velocity_x
+        self.expected_y = (self.ball.velocity_y * delt) + self.ball.y
+        if self.expected_y > self.height:
+            self.expected_y = self.height
+        elif self.expected_y < self.y:
+            self.height = 0
+
         if random.random() > self.alpha:
             if abs(self.ai_agent.center_y - self.expected_y) < 90:
                 return None
@@ -87,16 +95,7 @@ class PongGame(Widget):
                 self.ai_agent.center_y -= self.jump
             return None
 
-    def update(self, dt):
-        self.ball.move()
-
-        delt = (self.width - self.ball.x) / (self.ball.velocity_x)
-        self.expected_y = (self.ball.velocity_y * delt) + self.ball.y
-        if self.expected_y > self.height:
-            self.expected_y = self.height
-        elif self.expected_y < self.y:
-            self.height = 0
-
+    def bounce(self):
         # bounce of paddles
         self.player1.bounce_ball(self.ball)
         self.ai_agent.bounce_ball(self.ball)
@@ -105,6 +104,7 @@ class PongGame(Widget):
         if (self.ball.y < self.y) or (self.ball.top > self.top):
             self.ball.velocity_y *= -1
 
+    def check_win(self):
         # went of to a side to score point?
         if self.ball.x < self.x:
             self.ai_agent.score += 1
@@ -117,12 +117,23 @@ class PongGame(Widget):
             self.jump += 10
             self.serve_ball(vel=(-10, 0))
 
+    def move_player(self):
         # movement of player paddle
         y = int(self.control.face_x * self.height)
-        if self.player1.y > y:
-            self.player1.y -= 10
+        if self.height/2 > y:
+            if self.player1.y > 0:
+                self.player1.y -= 20
         else:
-            self.player1.y += 10
+            if self.player1.y < self.height-200:
+                self.player1.y += 20
+
+    def update(self, dt):
+        self.ball.move()
+
+        self.bounce()
+        self.check_win()
+
+        self.move_player()
 
     """
     def on_touch_move(self, touch):
@@ -131,6 +142,9 @@ class PongGame(Widget):
         if touch.x > self.width - self.width / 3:
             self.ai_agent.center_y = touch.y
     """
+
+    def on_stop(self):
+        self.control.stop()
 
 
 class AIApp(App):
