@@ -13,10 +13,10 @@ from PIL import Image
 
 import cv2
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 # This is needed since the notebook is stored in the object_detection folder.
-sys.path.append("/models/research")
+sys.path.append("..")
 
 # ## Object detection imports
 # Here are the imports from the object detection module.
