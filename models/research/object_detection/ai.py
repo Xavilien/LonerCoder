@@ -7,8 +7,6 @@ from kivy.clock import Clock
 from tfimgcontroller import FaceRecognition
 from threading import Thread
 
-# from kivy.core.window import Window
-
 
 class PongPaddle(Widget):
     score = NumericProperty(0)
@@ -18,7 +16,7 @@ class PongPaddle(Widget):
             vx, vy = ball.velocity
             offset = (ball.center_y - self.center_y) / (self.height / 2)
             bounced = Vector(-1 * vx, vy)
-            vel = bounced * 1.2
+            vel = bounced * 1.05
             ball.velocity = vel.x, vel.y + offset
 
 
@@ -40,36 +38,11 @@ class PongGame(Widget):
     alpha = 0.9
     playerpos = 0
 
-    def __init__(self):
+    def __init__(self, FaceRecognition):
         super(PongGame, self).__init__()
         self.serve_ball()
-        self.control = FaceRecognition()
-        t = Thread(target=self.control.capture)
-        t.start()
-
-        # self.bind_keyboard()
-
-    '''
-    def bind_keyboard(self):
-        self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
-        self._keyboard.bind(on_key_down=self._on_keyboard_down)
-
-    def _keyboard_closed(self):  # Function for keyboard events
-        self._keyboard.unbind(on_key_down=self._on_keyboard_down)
-        self._keyboard = None
-
-    def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
-        """
-        Allow for key presses to activate some buttons
-        """
-        if keycode[1] == 'up':
-            self.player1.center_y += self.jump
-
-        elif keycode[1] == 'down':
-            self.player1.center_y -= self.jump
-
-        return keyboard, text, modifiers
-    '''
+        self.control = FaceRecognition
+        self.control.start()
 
     def serve_ball(self, vel=(10, 0)):
         self.ball.center = self.center
@@ -141,10 +114,10 @@ class PongGame(Widget):
 
 class AIApp(App):
     def build(self):
-        game = PongGame()
-        Clock.schedule_interval(game.update, 1.0 / 120.0)
+        game = PongGame(FaceRecognition())
+        Clock.schedule_interval(game.update, 1.0 / 60.0)
         Clock.schedule_interval(game.agent_movement, 1.0 / 10.0)
-        Clock.schedule_interval(game.player_movement, 1.0 / 10.0)
+        Clock.schedule_interval(game.player_movement, 1.0 / 20.0)
         return game
 
 

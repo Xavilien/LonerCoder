@@ -13,8 +13,10 @@ from PIL import Image
 
 import cv2
 
+from threading import Thread
 
-class FaceRecognition:
+
+class FaceRecognition(Thread):
     cap = cv2.VideoCapture(0)
 
     # This is needed since the notebook is stored in the object_detection folder.
@@ -70,7 +72,13 @@ class FaceRecognition:
     categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES, use_display_name=True)
     category_index = label_map_util.create_category_index(categories)
 
-    x = 0
+    x = 0.5
+
+    def __init__(self):
+        super(FaceRecognition, self).__init__()
+
+    def run(self):
+        self.capture()
 
     def capture(self):
         # Detection
@@ -109,11 +117,11 @@ class FaceRecognition:
                     self.x = (boxes[0][person_elements[0]][1] + boxes[0][person_elements[0]][3]) / 2
                     # print(self.x)
 
-                    cv2.imshow('object detection', cv2.resize(image_np, (800, 600)))
+                    # cv2.imshow('object detection', cv2.resize(image_np, (800, 600)))
                     if cv2.waitKey(25) & 0xFF == ord('q'):
                         cv2.destroyAllWindows()
                         break
 
 
 if __name__ == '__main__':
-    FaceRecognition()
+    FaceRecognition().capture()
