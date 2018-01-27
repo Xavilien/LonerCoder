@@ -5,7 +5,7 @@ from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProper
 from kivy.vector import Vector
 from kivy.clock import Clock
 from kivy.core.window import Window
-from kivy.lang.builder import Builder
+import controller
 
 
 class PongPaddle(Widget):
@@ -39,6 +39,7 @@ class PongGame(Widget):
     def __init__(self):
         super(PongGame, self).__init__()
         self.serve_ball()
+        self.control = controller.FacialRecognition()
         self.bind_keyboard()
 
     def bind_keyboard(self):
@@ -83,7 +84,6 @@ class PongGame(Widget):
                 self.ai_agent.center_y -= self.jump
             return None
 
-
     def update(self, dt):
         self.ball.move()
 
@@ -114,6 +114,10 @@ class PongGame(Widget):
             self.jump += 10
             self.serve_ball(vel=(-10, 0))
 
+        # movement of player paddle
+        self.player1.x = self.control.face_x * self.width
+        self.player1.y = self.control.face_y * self.height
+
     """def on_touch_move(self, touch):
         if touch.x < self.width / 3:
             self.player1.center_y = touch.y
@@ -126,6 +130,7 @@ class AIApp(App):
         game = PongGame()
         Clock.schedule_interval(game.update, 1.0/120.0)
         Clock.schedule_interval(game.agent_movement, 1.0/10.0)
+        Clock.schedule_interval(game.control.capture, 1.0/10.0)
         return game
 
 
