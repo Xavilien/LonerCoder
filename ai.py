@@ -119,13 +119,13 @@ class PongGame(Widget):
 
     def move_player(self):
         # movement of player paddle
-        y = int(self.control.face_x * self.height)
-        if self.height/2 > y:
+        # print(self.control.face_x)
+        '''if self.height/2 > y:
             if self.player1.y > 0:
                 self.player1.y -= 20
         else:
             if self.player1.y < self.height-200:
-                self.player1.y += 20
+                self.player1.y += 20'''
 
     def update(self, dt):
         self.ball.move()

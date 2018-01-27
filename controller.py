@@ -18,10 +18,13 @@ class FacialRecognition:
         processed = self.face_recognition(frame)
 
         if processed:
-            self.face_x = processed[1]/width
+            (x, y, w, h) = processed[1:]
+            self.face_x = x/width
+            cv.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+            print(self.face_x)
 
         # Display the resulting frame
-        # cv.imshow('Capture', frame)
+        cv.imshow('Capture', frame)
 
     def face_recognition(self, frame):
         gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
@@ -30,7 +33,7 @@ class FacialRecognition:
 
         if len(faces) > 0:
             (x, y, w, h) = faces[0]
-            return frame, x, y
+            return frame, x, y, w, h
 
         return False
 
