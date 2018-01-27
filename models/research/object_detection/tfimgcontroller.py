@@ -16,8 +16,8 @@ import cv2
 cap = cv2.VideoCapture(0)
 
 # This is needed since the notebook is stored in the object_detection folder.
-sys.path.append("/Users/xavilien/Desktop/LonerCoder/models/research")
-sys.path.append("/Users/xavilien/Desktop/LonerCoder/models/research/object_detection/data")
+sys.path.append("..")
+sys.path.append("data")
 print(sys.path)
 
 # ## Object detection imports
