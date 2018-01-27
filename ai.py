@@ -71,14 +71,15 @@ class PongGame(Widget):
         self.ball.center = self.center
         self.ball.velocity = vel
 
-    def agent_movement(self, dt):
-        delt = (self.width - self.ball.x) / self.ball.velocity_x
-        self.expected_y = (self.ball.velocity_y * delt) + self.ball.y
-        if self.expected_y > self.height:
-            self.expected_y = self.height
-        elif self.expected_y < self.y:
-            self.height = 0
+    def player_movement(self, dt):
+        if abs(self.player1.center_y - self.playerpos) < 90:
+            return None
+        elif self.player1.center_y < self.playerpos:
+            self.player1.center_y += self.jump
+        elif self.player1.center_y > self.playerpos:
+            self.player1.center_y -= self.jump
 
+    def agent_movement(self, dt):
         if random.random() > self.alpha:
             if abs(self.ai_agent.center_y - self.expected_y) < 90:
                 return None
@@ -118,23 +119,21 @@ class PongGame(Widget):
             self.jump += 10
             self.serve_ball(vel=(-10, 0))
 
-    def move_player(self):
-        # movement of player paddle
-
-        if self.control.x > 0.5:
-            if self.player1.y > 0:
-                self.player1.y -= 20
-        else:
-            if self.player1.y < self.height-200:
-                self.player1.y += 20
-
     def update(self, dt):
+        delt = (self.width - self.ball.x) / self.ball.velocity_x
+        self.expected_y = (self.ball.velocity_y * delt) + self.ball.y
+        if self.expected_y > self.height:
+            self.expected_y = self.height
+        elif self.expected_y < self.y:
+            self.expected_y = 0
+
+        self.control.capture()
+        self.playerpos = self.control.x*self.height
+
         self.ball.move()
 
         self.bounce()
         self.check_win()
-
-        self.move_player()
 
     """
     def on_touch_move(self, touch):
@@ -150,7 +149,7 @@ class AIApp(App):
         game = PongGame()
         Clock.schedule_interval(game.update, 1.0/120.0)
         Clock.schedule_interval(game.agent_movement, 1.0/10.0)
-        Clock.schedule_interval(game.control.capture, 1.0/10.0)
+        Clock.schedule_interval(game.player_movement, 1.0 / 10.0)
         return game
 
 

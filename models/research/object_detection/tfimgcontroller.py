@@ -16,8 +16,7 @@ import cv2
 class FaceRecognition:
     def __init__(self):
         self.cap = cv2.VideoCapture(0)
-        sys.path.append("/Users/advaypakhale/Documents/Projects/HacknRoll18/models/research")
-        sys.path.append("/Users/advaypakhale/Documents/Projects/HacknRoll18/models/research/object_detection/data")
+        sys.path.append("..")
         from utils import label_map_util
         from utils import visualization_utils as vis_util
         MODEL_NAME = 'ssd_mobilenet_v1_coco_11_06_2017'
@@ -39,7 +38,7 @@ class FaceRecognition:
         category_index = label_map_util.create_category_index(categories)
         self.x = 0
 
-    def capture(self, dt):
+    def capture(self):
         with self.detection_graph.as_default():
             with tf.Session(graph=self.detection_graph) as sess:
                 ret, image_np = cap.read()
