@@ -50,6 +50,10 @@ class PongGame(Widget):
         """
         Allow for key presses to activate some buttons
         """
+        self.move(keycode)
+        return keyboard, text, modifiers
+
+    def move(self, keycode):
         if keycode[1] == 'up':
             self.player2.center_y += self.jump
 
@@ -61,8 +65,6 @@ class PongGame(Widget):
 
         elif keycode[1] == 's':
             self.player1.center_y -= self.jump
-
-        return keyboard, text, modifiers
 
     def serve_ball(self, vel=(4, 0)):
         self.ball.center = self.center
