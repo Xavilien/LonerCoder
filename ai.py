@@ -4,7 +4,8 @@ from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
 from kivy.vector import Vector
 from kivy.clock import Clock
-import controller
+from models.research.object_detection.tfimgcontroller import FaceRecognition
+
 # from kivy.core.window import Window
 
 
@@ -40,7 +41,7 @@ class PongGame(Widget):
     def __init__(self):
         super(PongGame, self).__init__()
         self.serve_ball()
-        self.control = controller.FacialRecognition()
+        self.control = FaceRecognition()
 
         # self.bind_keyboard()
 
@@ -119,13 +120,13 @@ class PongGame(Widget):
 
     def move_player(self):
         # movement of player paddle
-        # print(self.control.face_x)
-        '''if self.height/2 > y:
+
+        if self.control.x > 0.5:
             if self.player1.y > 0:
                 self.player1.y -= 20
         else:
             if self.player1.y < self.height-200:
-                self.player1.y += 20'''
+                self.player1.y += 20
 
     def update(self, dt):
         self.ball.move()
@@ -142,9 +143,6 @@ class PongGame(Widget):
         if touch.x > self.width - self.width / 3:
             self.ai_agent.center_y = touch.y
     """
-
-    def on_stop(self):
-        self.control.stop()
 
 
 class AIApp(App):
