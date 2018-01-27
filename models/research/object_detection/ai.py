@@ -89,6 +89,14 @@ class PongGame(Widget):
         elif self.player1.center_y > self.playerpos:
             self.player1.center_y -= self.jump
 
+    def player_movement2(self, dt):
+        if abs(self.height/2 - self.playerpos) < 45:
+            return None
+        elif self.height/2 < self.playerpos and self.player1.y < self.height:
+            self.player1.center_y += self.jump
+        elif self.height/2 > self.playerpos and self.player1.y > 0:
+            self.player1.center_y -= self.jump
+
     def agent_movement(self, dt):
         if random.random() > self.alpha:
             if abs(self.ai_agent.center_y - self.expected_y) < 90:
