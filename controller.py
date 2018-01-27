@@ -1,4 +1,5 @@
 import cv2 as cv
+import threading
 
 cap = cv.VideoCapture(0)
 face_cascade = cv.CascadeClassifier('/Users/xavilien/.virtualenvs/Hackathon/lib/python3.6/site-packages/cv2/data/'
@@ -7,30 +8,54 @@ eye_cascade = cv.CascadeClassifier('/Users/xavilien/.virtualenvs/Hackathon/lib/p
                                    'haarcascade_eye.xml')
 
 
-while True:
-    # Capture frame-by-frame
-    ret, frame = cap.read()
-    # Our operations on the frame come here
-    gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+class FacialRecognition:
+    def __init__(self):
+        self.face_x = 0
+        self.face_y = 0
 
-    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+    def capture(self):
+        while True:
+            # Capture frame-by-frame
+            ret, frame = cap.read()
+            width = cap.get(3)  # float
+            height = cap.get(4)  # float
 
-    if len(faces) > 1:
-        for (x, y, w, h) in faces:
+            # Our operations on the frame come here
+            processed = self.face_recognition(frame)
+
+            if processed:
+                self.face_x = processed[1]/width
+                self.face_y = processed[2]/height
+
+            # Display the resulting frame
+            cv.imshow('Capture', frame)
+            if cv.waitKey(1) & 0xFF == ord('q'):
+                break
+
+    @staticmethod
+    def face_recognition(frame):
+        gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+
+        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+
+        if len(faces) > 0:
+            (x, y, w, h) = faces[0]
             cv.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
             roi_gray = gray[y:y + h, x:x + w]
             roi_color = frame[y:y + h, x:x + w]
 
-            eyes = eye_cascade.detectMultiScale(roi_gray)
+            eyes = eye_cascade.detectMultiScale(roi_gray, scaleFactor=3, minNeighbors=5)
+
             if len(eyes) > 1:
                 for (ex, ey, ew, eh) in eyes:
-                    cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+                        cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 
-    # Display the resulting frame
-    cv.imshow('frame', frame)
-    if cv.waitKey(1) & 0xFF == ord('q'):
-        break
-    print()
+            return frame, x, y
+
+        return False
+
+
+FacialRecognition().capture()
 
 # When everything done, release the capture
 cap.release()
