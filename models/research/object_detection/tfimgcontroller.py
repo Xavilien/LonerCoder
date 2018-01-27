@@ -16,8 +16,8 @@ import cv2
 cap = cv2.VideoCapture(0)
 
 # This is needed since the notebook is stored in the object_detection folder.
-sys.path.append("/Users/advaypakhale/Documents/Projects/HacknRoll18/models/research")
-sys.path.append("/Users/advaypakhale/Documents/Projects/HacknRoll18/models/research/object_detection/data")
+sys.path.append("/Users/xavilien/Desktop/LonerCoder/models/research")
+sys.path.append("/Users/xavilien/Desktop/LonerCoder/models/research/object_detection/data")
 print(sys.path)
 
 # ## Object detection imports
@@ -62,7 +62,9 @@ with detection_graph.as_default():
         tf.import_graph_def(od_graph_def, name='')
 
 # ## Loading label map
-# Label maps map indices to category names, so that when our convolution network predicts `5`, we know that this corresponds to `airplane`.  Here we use internal utility functions, but anything that returns a dictionary mapping integers to appropriate string labels would be fine
+# Label maps map indices to category names, so that when our convolution network predicts `5`, we know that this
+# corresponds to `airplane`.  Here we use internal utility functions, but anything that returns a dictionary mapping
+# integers to appropriate string labels would be fine
 
 label_map = label_map_util.load_labelmap(PATH_TO_LABELS)
 categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES, use_display_name=True)
