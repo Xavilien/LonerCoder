@@ -4,7 +4,6 @@ import cv2 as cv
 class FacialRecognition:
     def __init__(self):
         self.face_x = 0
-        self.face_y = 0
 
         self.cap = cv.VideoCapture(0)
         self.face_cascade = cv.CascadeClassifier(
@@ -22,7 +21,6 @@ class FacialRecognition:
 
         if processed:
             self.face_x = processed[1]/width
-            self.face_y = processed[2]/height
 
         # Display the resulting frame
         # cv.imshow('Capture', frame)

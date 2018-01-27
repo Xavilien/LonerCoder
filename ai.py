@@ -40,8 +40,10 @@ class PongGame(Widget):
         super(PongGame, self).__init__()
         self.serve_ball()
         self.control = controller.FacialRecognition()
-        self.bind_keyboard()
 
+        # self.bind_keyboard()
+
+    '''
     def bind_keyboard(self):
         self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
         self._keyboard.bind(on_key_down=self._on_keyboard_down)
@@ -61,6 +63,7 @@ class PongGame(Widget):
             self.player1.center_y -= self.jump
 
         return keyboard, text, modifiers
+    '''
 
     def serve_ball(self, vel=(10, 0)):
         self.ball.center = self.center
@@ -115,13 +118,15 @@ class PongGame(Widget):
             self.serve_ball(vel=(-10, 0))
 
         # movement of player paddle
-        self.player1.center_y = int(self.control.face_y * self.height)
+        self.player1.y = int(self.control.face_x * self.height)
 
-    """def on_touch_move(self, touch):
+    """
+    def on_touch_move(self, touch):
         if touch.x < self.width / 3:
             self.player1.center_y = touch.y
         if touch.x > self.width - self.width / 3:
-            self.ai_agent.center_y = touch.y"""
+            self.ai_agent.center_y = touch.y
+    """
 
 
 class AIApp(App):
