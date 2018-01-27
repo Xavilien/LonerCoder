@@ -38,9 +38,9 @@ class PongGame(Widget):
     alpha = 0.9
     playerpos = 0
 
-    def __init__(self, FaceRecognition):
+    def __init__(self):
         super(PongGame, self).__init__()
-        self.control = FaceRecognition
+        self.control = FaceRecognition()
         self.control.start()
 
         self.t = Thread(target=self.start)
@@ -125,7 +125,7 @@ class PongGame(Widget):
 
 class AIApp(App):
     def build(self):
-        game = PongGame(FaceRecognition())
+        game = PongGame()
         return game
 
 
