@@ -16,7 +16,7 @@ class PongPaddle(Widget):
             vx, vy = ball.velocity
             offset = (ball.center_y - self.center_y) / (self.height / 2)
             bounced = Vector(-1 * vx, vy)
-            vel = bounced * 1.05
+            vel = bounced * 1.01
             ball.velocity = vel.x, vel.y + offset
 
 
@@ -40,9 +40,20 @@ class PongGame(Widget):
 
     def __init__(self, FaceRecognition):
         super(PongGame, self).__init__()
-        self.serve_ball()
         self.control = FaceRecognition
         self.control.start()
+
+        self.t = Thread(target=self.start)
+        self.t.start()
+
+    def start(self):
+        while True:
+            if self.control.x is not None:
+                self.serve_ball()
+                Clock.schedule_interval(self.update, 1.0 / 60.0)
+                Clock.schedule_interval(self.agent_movement, 1.0 / 10.0)
+                Clock.schedule_interval(self.player_movement, 1.0 / 20.0)
+                break
 
     def serve_ball(self, vel=(10, 0)):
         self.ball.center = self.center
@@ -115,9 +126,6 @@ class PongGame(Widget):
 class AIApp(App):
     def build(self):
         game = PongGame(FaceRecognition())
-        Clock.schedule_interval(game.update, 1.0 / 60.0)
-        Clock.schedule_interval(game.agent_movement, 1.0 / 10.0)
-        Clock.schedule_interval(game.player_movement, 1.0 / 20.0)
         return game
 
 
