@@ -115,8 +115,7 @@ class PongGame(Widget):
             self.serve_ball(vel=(-10, 0))
 
         # movement of player paddle
-        self.player1.x = self.control.face_x * self.width
-        self.player1.y = self.control.face_y * self.height
+        self.player1.center_y = int(self.control.face_y * self.height)
 
     """def on_touch_move(self, touch):
         if touch.x < self.width / 3:
