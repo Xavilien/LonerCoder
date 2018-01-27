@@ -135,14 +135,6 @@ class PongGame(Widget):
         self.bounce()
         self.check_win()
 
-    """
-    def on_touch_move(self, touch):
-        if touch.x < self.width / 3:
-            self.player1.center_y = touch.y
-        if touch.x > self.width - self.width / 3:
-            self.ai_agent.center_y = touch.y
-    """
-
 
 class AIApp(App):
     def build(self):
