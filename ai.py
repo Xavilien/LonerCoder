@@ -92,10 +92,10 @@ class PongGame(Widget):
 
         delt = (self.width - self.ball.x) / (self.ball.velocity_x)
         self.expected_y = (self.ball.velocity_y * delt) + self.ball.y
-        if self.expected_y > self.width:
-            self.expected_y = self.width
+        if self.expected_y > self.height:
+            self.expected_y = self.height
         elif self.expected_y < self.y:
-            self.expected_y = 0
+            self.height = 0
 
         # bounce of paddles
         self.player1.bounce_ball(self.ball)
