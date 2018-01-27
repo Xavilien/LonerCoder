@@ -4,7 +4,7 @@ from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
 from kivy.vector import Vector
 from kivy.clock import Clock
-from models.research.object_detection.tfimgcontroller import FaceRecognition
+from tfimgcontroller import FaceRecognition
 
 # from kivy.core.window import Window
 
