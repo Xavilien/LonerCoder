@@ -4,8 +4,8 @@ from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
 from kivy.vector import Vector
 from kivy.clock import Clock
-from kivy.core.window import Window
 import controller
+# from kivy.core.window import Window
 
 
 class PongPaddle(Widget):
@@ -118,7 +118,11 @@ class PongGame(Widget):
             self.serve_ball(vel=(-10, 0))
 
         # movement of player paddle
-        self.player1.y = int(self.control.face_x * self.height)
+        y = int(self.control.face_x * self.height)
+        if self.player1.y > y:
+            self.player1.y -= 10
+        else:
+            self.player1.y += 10
 
     """
     def on_touch_move(self, touch):
