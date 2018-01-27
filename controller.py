@@ -14,23 +14,20 @@ class FacialRecognition:
         self.face_y = 0
 
     def capture(self):
-        while True:
-            # Capture frame-by-frame
-            ret, frame = cap.read()
-            width = cap.get(3)  # float
-            height = cap.get(4)  # float
+        # Capture frame-by-frame
+        ret, frame = cap.read()
+        width = cap.get(3)  # float
+        height = cap.get(4)  # float
 
-            # Our operations on the frame come here
-            processed = self.face_recognition(frame)
+        # Our operations on the frame come here
+        processed = self.face_recognition(frame)
 
-            if processed:
-                self.face_x = processed[1]/width
-                self.face_y = processed[2]/height
+        if processed:
+            self.face_x = processed[1]/width
+            self.face_y = processed[2]/height
 
-            # Display the resulting frame
-            cv.imshow('Capture', frame)
-            if cv.waitKey(1) & 0xFF == ord('q'):
-                break
+        # Display the resulting frame
+        cv.imshow('Capture', frame)
 
     @staticmethod
     def face_recognition(frame):
