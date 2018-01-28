@@ -23,7 +23,7 @@ class PongGame(Widget):
     ballposx = 0
     ballposy = 0
 
-    playerno = 1
+    playerno = 0
 
     HOST, PORT = "localhost", 9999
     sock = socket(AF_INET, SOCK_STREAM)
@@ -36,14 +36,16 @@ class PongGame(Widget):
 
     def connect(self):
         self.sock.connect((self.HOST, self.PORT))
-        self.sock.sendall(bytes('POST HI', 'ascii'))
-        response = int(str(self.sock.recv(1024), 'ascii'))
-        if response == 2:
+        self.sock.sendall(bytes('PLAYER', 'ascii'))
+
+        '''response = int(str(self.sock.recv(1024), 'ascii'))
+
+        if response == 1:
             self.player1, self.player2 = self.player2, self.player1
-            self.playerno = 2
+            self.playerno = 1'''
 
     def send(self, playerpos):
-        self.sock.sendall(bytes(playerpos + "\n", 'ascii'))
+        self.sock.sendall(bytes(playerpos, 'ascii'))
 
     def receive(self):
         data = 'GET'
@@ -60,7 +62,7 @@ class PongGame(Widget):
 
     def update(self, dt):
         playerpos = self.height/2 + (self.control.x-0.5) * self.height * 2
-        print(playerpos)
+        # print(playerpos)
 
         # Send playerpos
         self.send(str(playerpos))
