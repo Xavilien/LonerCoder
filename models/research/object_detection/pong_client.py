@@ -27,7 +27,7 @@ class PongGame(Widget):
 
     playerno = 0
 
-    HOST, PORT = "192.168.43.88", 8000
+    HOST, PORT = "192.168.48.122", 8000
     sock = socket(AF_INET, SOCK_STREAM)
 
     def __init__(self):
