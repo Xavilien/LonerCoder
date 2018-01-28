@@ -27,11 +27,12 @@ class PongGame(Widget):
 
     playerno = 0
 
-    HOST, PORT = "localhost", 8000
+    HOST, PORT = "192.168.43.122", 8000
     sock = socket(AF_INET, SOCK_STREAM)
 
     def __init__(self):
         super(PongGame, self).__init__()
+
         self.connect()
         self.control = FaceRecognition()
         self.control.start()
@@ -39,7 +40,7 @@ class PongGame(Widget):
         self.t = Thread(target=self.start)
         self.t.start()
 
-        self.connection = Thread(target=self.receive())
+        self.connection = Thread(target=self.receive)
 
         self.ready = False
 
