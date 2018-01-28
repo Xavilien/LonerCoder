@@ -35,7 +35,7 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
             mapdict[self.client_address[0]] = 0
         else:
             mapdict[self.client_address[0]] = 1
-        self.request.sendall(bytes("True"), 'ascii'))
+        self.request.sendall(bytes("True"), 'ascii')
 
 
 class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
