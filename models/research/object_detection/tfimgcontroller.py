@@ -115,7 +115,7 @@ class FaceRecognition(Thread):
                         line_thickness=8)
 
                     self.x = ((boxes[0][person_elements[0]][3]+boxes[0][person_elements[0]][1])/2)
-                    print(self.x)
+                    # print(self.x)
 
                     # cv2.imshow('object detection', cv2.resize(image_np, (800, 600)))
                     if cv2.waitKey(25) & 0xFF == ord('q'):
