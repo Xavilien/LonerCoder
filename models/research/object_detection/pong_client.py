@@ -62,7 +62,8 @@ class PongGame(Widget):
             self.playerno = 1'''
 
     def send(self, playerpos):
-        self.sock.sendall(bytes(playerpos, 'ascii'))
+        data = 'POST '+playerpos
+        self.sock.sendall(bytes(data, 'ascii'))
         response = str(self.sock.recv(1024), 'ascii')
 
     def receive(self):
