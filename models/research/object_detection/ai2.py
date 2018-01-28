@@ -66,7 +66,7 @@ class PongGame(Widget):
         Clock.schedule_interval(self.agent_movement, 1.0 / 30.0)
         Clock.schedule_interval(self.player_movement, 1.0 / 30.0)
 
-    def serve_ball(self, vel=(0, -10)):
+    def serve_ball(self, vel=(0.5-random.random(), -10)):
         self.ball.center = self.center
         self.ball.velocity = vel
 
@@ -76,7 +76,7 @@ class PongGame(Widget):
         self.ai_agent.bounce_ball(self.ball)
 
         # bounce ball off bottom or top
-        if (self.ball.x < self.x) or (self.ball.top > self.top):
+        if (self.ball.center_x-25 <= 0) or (self.ball.center_x+25 >= self.width):
             self.ball.velocity_x *= -1
 
     def check_win(self):
@@ -84,14 +84,14 @@ class PongGame(Widget):
         if self.ball.y < self.y:
             # self.alpha -= 0.1
             # self.jump += 10
-            self.serve_ball(vel=(0, 10))
+            self.serve_ball(vel=(0.5-random.random(), -10))
 
             self.reset()
 
         if self.ball.y > self.height:
             # self.alpha -= 0.1
             # self.jump += 10
-            self.serve_ball(vel=(0, -10))
+            self.serve_ball(vel=(0.5-random.random(), 10))
 
             self.reset()
 
@@ -102,10 +102,10 @@ class PongGame(Widget):
     def player_movement(self, dt):
         if abs(self.player1.center_x - self.playerpos) < 90:
             return None
-        elif self.player1.center_x < self.playerpos:
-            self.player1.center_x -= self.jump
-        elif self.player1.center_x > self.playerpos:
+        elif self.playerpos > self.player1.center_x and self.player1.center_x < self.width-100:
             self.player1.center_x += self.jump
+        elif self.playerpos < self.player1.center_x and self.player1.center_x > 100:
+            self.player1.center_x -= self.jump
 
     def agent_movement(self, dt):
         if random.random() > self.alpha:
@@ -134,8 +134,8 @@ class PongGame(Widget):
             self.expected_x = 0
 
         # Update position of head
-        self.playerpos = self.width/2 + (self.control.x-0.5) * self.width * 2
-        print(self.playerpos)
+        self.playerpos = self.width/2 + (0.5-self.control.x) * self.width * 2
+        # print(self.control.x)
 
         self.player1.time = round(time() - self.start_time, 1)
 
@@ -145,11 +145,11 @@ class PongGame(Widget):
         self.check_win()
 
 
-class AIApp(App):
+class AI2App(App):
     def build(self):
         game = PongGame()
         return game
 
 
 if __name__ == '__main__':
-    AIApp().run()
+    AI2App().run()
