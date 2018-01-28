@@ -41,9 +41,11 @@ class PongGame(Widget):
 
         self.connection = Thread(target=self.receive())
 
+        self.ready = False
+
     def start(self):
         while True:
-            if self.control.x is not None:
+            if self.control.x is not None and self.ready:
                 Clock.schedule_interval(self.update, 1.0 / 60.0)
                 self.connection.start()
                 break
@@ -51,6 +53,8 @@ class PongGame(Widget):
     def connect(self):
         self.sock.connect((self.HOST, self.PORT))
         self.sock.sendall(bytes('PLAYER', 'ascii'))
+        response = str(self.sock.recv(1024), 'ascii')
+        self.ready = bool(response)
 
         '''response = int(str(self.sock.recv(1024), 'ascii'))
 
