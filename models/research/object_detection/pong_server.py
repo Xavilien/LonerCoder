@@ -1,12 +1,56 @@
 import random
+import socket
+import threading
+import socketserver
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
 from kivy.vector import Vector
 from kivy.clock import Clock
-from tfimgcontroller import FaceRecognition
-from threading import Thread
 
+
+data = [None, None, 0, 0, 0, 0]
+mapdict = {}
+
+
+class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
+    global data
+    global mapdict
+
+    def handle(self):
+        self.reqinput = str(self.request.recv(1024), 'ascii').split()
+        command = self.reqinput[0]
+        method = "do_" + command
+        do = getattr(self, method)
+        do()
+
+    def do_GET(self):
+        self.request.sendall(bytes(" ".join([str(i) for i in data]), 'ascii'))
+
+    def do_POST(self):
+        data[mapdict[self.client_address[0]]] = float(self.reqinput[1])  # Update player positions
+
+    def do_PLAYER(self):
+        if len(mapdict.keys()) == 0:
+            mapdict[self.client_address[0]] = 0
+        else:
+            mapdict[self.client_address[0]] = 1
+
+
+class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
+    pass
+
+"""
+def client(ip, port, message):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.connect((ip, port))
+    try:
+        sock.sendall(bytes(message, 'ascii'))
+        response = str(sock.recv(1024), 'ascii')
+        print("Received: {}".format(response))
+    finally:
+        sock.close()
+"""
 
 class PongPaddle(Widget):
     score = NumericProperty(0)
@@ -30,30 +74,36 @@ class PongBall(Widget):
 
 
 class PongGame(Widget):
+    global data
+    global mapdict
+
     ball = ObjectProperty(None)
     player1 = ObjectProperty(None)
-    ai_agent = ObjectProperty(None)
-    expected_y = None
+    player2 = ObjectProperty(None)
     jump = 30
-    alpha = 0.9
-    playerpos = 0
+
+    HOST, PORT = "localhost", 8000
+    server = ThreadedTCPServer((HOST, PORT), ThreadedTCPRequestHandler)
+    ip, port = server.server_address
+    server_thread = threading.Thread(target=server.serve_forever)
+    server_thread.daemon = True
+    server_thread.start()
+
 
     def __init__(self):
         super(PongGame, self).__init__()
-        self.control = FaceRecognition()
-        self.control.start()
-
-        self.t = Thread(target=self.start)
+        self.t = threading.Thread(target=self.start)
         self.t.start()
 
     def start(self):
         while True:
-            if self.control.x is not None:
+            if (data[0] is not None) and (data[1] is not None):
                 self.serve_ball()
                 Clock.schedule_interval(self.update, 1.0 / 60.0)
-                Clock.schedule_interval(self.agent_movement, 1.0 / 10.0)
-                Clock.schedule_interval(self.player_movement, 1.0 / 20.0)
+                Clock.schedule_interval(self.player1_movement, 1.0 / 10.0)
+                Clock.schedule_interval(self.player2_movement, 1.0 / 10.0)
                 break
+
 
     def serve_ball(self, vel=(10, 0)):
         self.ball.center = self.center
@@ -62,7 +112,7 @@ class PongGame(Widget):
     def bounce(self):
         # bounce of paddles
         self.player1.bounce_ball(self.ball)
-        self.ai_agent.bounce_ball(self.ball)
+        self.player2.bounce_ball(self.ball)
 
         # bounce ball off bottom or top
         if (self.ball.y < self.y) or (self.ball.top > self.top):
@@ -71,66 +121,41 @@ class PongGame(Widget):
     def check_win(self):
         # went of to a side to score point?
         if self.ball.x < self.x:
-            self.ai_agent.score += 1
-            self.alpha -= 0.1
+            self.player2.score += 1
             self.jump += 10
             self.serve_ball(vel=(10, 0))
         if self.ball.x > self.width:
             self.player1.score += 1
-            self.alpha -= 0.1
             self.jump += 10
             self.serve_ball(vel=(-10, 0))
 
-    def player_movement(self, dt):
-        if abs(self.player1.center_y - self.playerpos) < 90:
+    def player1_movement(self, dt):
+        if abs(self.player1.center_y - data[0]) < 90:
             return None
-        elif self.player1.center_y < self.playerpos:
+        elif self.player1.center_y < data[0]:
             self.player1.center_y += self.jump
-        elif self.player1.center_y > self.playerpos:
+        elif self.player1.center_y > data[0]:
             self.player1.center_y -= self.jump
 
-    def player_movement2(self, dt):
-        if abs(self.height/2 - self.playerpos) < 20:
+    def player2_movement(self, dt):
+        if abs(self.player2.center_y - data[1]) < 90:
             return None
-        elif self.height/2 < self.playerpos and self.player1.y < self.height-200:
-            self.player1.center_y += self.jump
-        elif self.height/2 > self.playerpos and self.player1.y > 0:
-            self.player1.center_y -= self.jump
+        elif self.player2.center_y < data[1]:
+            self.player2.center_y += self.jump
+        elif self.player2.center_y > data[1]:
+            self.player2.center_y -= self.jump
 
-    def agent_movement(self, dt):
-        if random.random() > self.alpha:
-            if abs(self.ai_agent.center_y - self.expected_y) < 90:
-                return None
-            elif self.ai_agent.center_y < self.expected_y:
-                self.ai_agent.center_y += self.jump
-            elif self.ai_agent.center_y > self.expected_y:
-                self.ai_agent.center_y -= self.jump
-            return None
-        else:
-            if abs(self.ai_agent.center_y - self.expected_y) < 1000:
-                return None
-            elif self.ai_agent.center_y < self.expected_y:
-                self.ai_agent.center_y += self.jump
-            elif self.ai_agent.center_y > self.expected_y:
-                self.ai_agent.center_y -= self.jump
-            return None
+    def update_data(self):
+        data[2] = self.ball.x
+        data[3] = self.ball.y
+        data[4] = self.player1.score
+        data[5] = self.player2.score
 
-    def update(self, dt):
-        delt = (self.width - self.ball.x) / self.ball.velocity_x
-        self.expected_y = (self.ball.velocity_y * delt) + self.ball.y
-        if self.expected_y > self.height:
-            self.expected_y = self.height
-        elif self.expected_y < self.y:
-            self.expected_y = 0
-
-        self.playerpos = self.height/2 + (self.control.x-0.5) * self.height * 2
-        print(self.playerpos)
-
+    def update_game(self, dt):
         self.ball.move()
-
         self.bounce()
         self.check_win()
-
+        self.update_data()
 
 class AIApp(App):
     def build(self):
