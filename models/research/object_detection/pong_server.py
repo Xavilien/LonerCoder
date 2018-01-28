@@ -89,7 +89,6 @@ class PongGame(Widget):
     server_thread.daemon = True
     server_thread.start()
 
-
     def __init__(self):
         super(PongGame, self).__init__()
         self.t = threading.Thread(target=self.start)
@@ -103,7 +102,6 @@ class PongGame(Widget):
                 Clock.schedule_interval(self.player1_movement, 1.0 / 10.0)
                 Clock.schedule_interval(self.player2_movement, 1.0 / 10.0)
                 break
-
 
     def serve_ball(self, vel=(10, 0)):
         self.ball.center = self.center
@@ -156,6 +154,7 @@ class PongGame(Widget):
         self.bounce()
         self.check_win()
         self.update_data()
+
 
 class AIApp(App):
     def build(self):

@@ -3,6 +3,8 @@ from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
 from tfimgcontroller import FaceRecognition
 from socket import socket, AF_INET, SOCK_STREAM
+from kivy.clock import Clock
+from threading import Thread
 
 
 class PongPaddle(Widget):
@@ -25,7 +27,7 @@ class PongGame(Widget):
 
     playerno = 0
 
-    HOST, PORT = "localhost", 9999
+    HOST, PORT = "192.168.43.88", 8000
     sock = socket(AF_INET, SOCK_STREAM)
 
     def __init__(self):
@@ -33,6 +35,18 @@ class PongGame(Widget):
         self.connect()
         self.control = FaceRecognition()
         self.control.start()
+
+        self.t = Thread(target=self.start)
+        self.t.start()
+
+        self.connection = Thread(target=self.receive())
+
+    def start(self):
+        while True:
+            if self.control.x is not None:
+                Clock.schedule_interval(self.update, 1.0 / 60.0)
+                self.connection.start()
+                break
 
     def connect(self):
         self.sock.connect((self.HOST, self.PORT))
@@ -48,11 +62,19 @@ class PongGame(Widget):
         self.sock.sendall(bytes(playerpos, 'ascii'))
 
     def receive(self):
-        data = 'GET'
-        self.sock.sendall(bytes(data, 'ascii'))
-        response = str(self.sock.recv(1024), 'ascii')
+        while True:
+            data = 'GET'
+            self.sock.sendall(bytes(data, 'ascii'))
 
-        # "player1pos player2pos ballposx ballposy player1score player2score"
+            # "player1pos player2pos ballposx ballposy player1score player2score"
+            response = [int(i) for i in str(self.sock.recv(1024), 'ascii').split()]
+
+            self.player1pos = response[0]
+            self.player2pos = response[1]
+            self.ballposx = response[2]
+            self.ballposy = response[3]
+            self.player1.score = response[4]
+            self.player2.score = response[5]
 
     def display(self):
         self.player1.center_y = self.player1pos
@@ -66,9 +88,6 @@ class PongGame(Widget):
 
         # Send playerpos
         self.send(str(playerpos))
-
-        # Receive playerpos and opponentpos and ballpos and score
-        self.receive()
 
         # Update diplay
         self.display()
