@@ -37,7 +37,6 @@ class PongGame(Widget):
     ai_agent = ObjectProperty(None)
     expected_x = None
     jump = 30
-    alpha = 0
     playerpos = 0
 
     start_time = 0
@@ -66,7 +65,7 @@ class PongGame(Widget):
         Clock.schedule_interval(self.agent_movement, 1.0 / 30.0)
         Clock.schedule_interval(self.player_movement, 1.0 / 30.0)
 
-    def serve_ball(self, vel=(0.5-random.random(), -10)):
+    def serve_ball(self, vel=(2*(0.5-random.random()), -10)):
         self.ball.center = self.center
         self.ball.velocity = vel
 
@@ -82,18 +81,14 @@ class PongGame(Widget):
     def check_win(self):
         # went of to a side to score point?
         if self.ball.y < self.y:
-            # self.alpha -= 0.1
-            # self.jump += 10
-            self.serve_ball(vel=(0.5-random.random(), -10))
-
+            self.serve_ball()
             self.reset()
 
         if self.ball.y > self.height:
-            # self.alpha -= 0.1
-            # self.jump += 10
-            self.serve_ball(vel=(0.5-random.random(), 10))
-
+            self.ids.start.text = 'You beat the game!'
             self.reset()
+            self.player1.highscore = '>9000'
+            self.player1.time = '>9000'
 
     def reset(self):
         self.player1.highscore = max(self.player1.time, self.player1.highscore)
@@ -108,24 +103,14 @@ class PongGame(Widget):
             self.player1.center_x -= self.jump
 
     def agent_movement(self, dt):
-        if random.random() > self.alpha:
-            if abs(self.ai_agent.center_x - self.expected_x) < 90:
-                return None
-            elif self.ai_agent.center_x < self.expected_x:
-                self.ai_agent.center_x += self.jump
-            elif self.ai_agent.center_x > self.expected_x:
-                self.ai_agent.center_x -= self.jump
+        if abs(self.ai_agent.center_x - self.expected_x) < 90:
             return None
-        else:
-            if abs(self.ai_agent.center_x - self.expected_x) < 1000:
-                return None
-            elif self.ai_agent.center_x < self.expected_x:
-                self.ai_agent.center_x += self.jump
-            elif self.ai_agent.center_x > self.expected_x:
-                self.ai_agent.center_x -= self.jump
-            return None
+        elif self.ai_agent.center_x < self.expected_x:
+            self.ai_agent.center_x += self.jump
+        elif self.ai_agent.center_x > self.expected_x:
+            self.ai_agent.center_x -= self.jump
 
-    def update(self, dt):
+    def predict(self):
         delt = (self.height - self.ball.y) / self.ball.velocity_y
         self.expected_x = (self.ball.velocity_x * delt) + self.ball.x
         if self.expected_x > self.width:
@@ -133,8 +118,11 @@ class PongGame(Widget):
         elif self.expected_x < self.x:
             self.expected_x = 0
 
+    def update(self, dt):
+        self.predict()
+
         # Update position of head
-        self.playerpos = self.width/2 + (0.5-self.control.x) * self.width * 2
+        self.playerpos = self.width/2 + (0.5-self.control.x) * self.width
         # print(self.control.x)
 
         self.player1.time = round(time() - self.start_time, 1)
