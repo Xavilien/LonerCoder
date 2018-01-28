@@ -27,7 +27,7 @@ class PongGame(Widget):
 
     playerno = 0
 
-    HOST, PORT = "192.168.43.122", 7000
+    HOST, PORT = "192.168.43.122", 6000
     sock = socket(AF_INET, SOCK_STREAM)
 
     def __init__(self):
@@ -62,7 +62,7 @@ class PongGame(Widget):
             self.playerno = 1'''
 
     def send(self, playerpos):
-        data = 'POST '+playerpos
+        data = 'POST ' + playerpos
         self.sock.sendall(bytes(data, 'ascii'))
         response = str(self.sock.recv(1024), 'ascii')
 
