@@ -27,7 +27,7 @@ class PongGame(Widget):
 
     playerno = 0
 
-    HOST, PORT = "192.168.43.122", 2000
+    HOST, PORT = "192.168.43.122", 4000
     sock = socket(AF_INET, SOCK_STREAM)
 
     def __init__(self):
@@ -37,19 +37,19 @@ class PongGame(Widget):
         self.control = FaceRecognition()
         self.control.start()
 
+        self.connection = Thread(target=self.receive)
+
         self.t = Thread(target=self.start)
         self.t.start()
-
-        self.connection = Thread(target=self.receive)
 
         self.ready = False
 
     def start(self):
-        while True:
-            if self.control.x is not None and self.ready:
-                Clock.schedule_interval(self.update, 1.0 / 60.0)
-                self.connection.start()
-                break
+        while self.control.x is None and not self.ready:
+            print(self.control.x, self.ready)
+
+        Clock.schedule_interval(self.update, 1.0 / 60.0)
+        self.connection.start()
 
     def connect(self):
         self.sock.connect((self.HOST, self.PORT))
@@ -88,7 +88,11 @@ class PongGame(Widget):
         self.ball.center_y = self.ballposy
 
     def update(self, dt):
-        playerpos = self.height/2 + (self.control.x-0.5) * self.height * 2
+        playerpos = self.height/2
+
+        if self.control.x is not None:
+            playerpos += (self.control.x-0.5) * self.height * 2
+
         # print(playerpos)
 
         # Send playerpos
