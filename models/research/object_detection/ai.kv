@@ -1,4 +1,5 @@
-#:kivy 1.0.10
+#: kivy 1.0.10
+#: import datetime datetime
 
 <PongBall>:
     size: 50, 50
@@ -40,20 +41,26 @@
         id: stopwatch
         font_size: 70
         center_x: root.width * 0.5
-        top: root.top - 25
-        text: str(root.player1.time)[:-3]
+        top: root.top - 20
+        text: str(root.player1.time) + 's'
 
     Label:
         id: highscore
         font_size: 70
         center_x: root.width * 0.5
         top: root.top - 100
-        text: 'Highscore: ' + str(root.player1.highscore)[:-3]
+        text: 'Highscore: ' + str(root.player1.highscore) + 's'
 
+    Label:
+        id: start
+        font_size: 70
+        center: self.parent.center
+        text: "Get Ready"
 
     PongBall:
         id: pong_ball
         center: self.parent.center
+        opacity: 0
 
     PongPaddle:
         id: player_left

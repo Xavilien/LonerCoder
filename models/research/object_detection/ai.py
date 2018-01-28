@@ -6,20 +6,21 @@ from kivy.vector import Vector
 from kivy.clock import Clock
 from tfimgcontroller import FaceRecognition
 from threading import Thread
-from datetime import datetime, timedelta
+from datetime import datetime
+from time import time
 
 
 class PongPaddle(Widget):
     score = NumericProperty(0)
-    time = Property(timedelta(0))
-    highscore = Property(timedelta(0))
+    time = Property(0.0)
+    highscore = Property(0.0)
 
     def bounce_ball(self, ball):
         if self.collide_widget(ball):
             vx, vy = ball.velocity
             offset = (ball.center_y - self.center_y) / (self.height / 2)
             bounced = Vector(-1 * vx, vy)
-            vel = bounced * 1.01
+            vel = bounced * 1.05
             ball.velocity = vel.x, vel.y + offset
 
 
@@ -41,28 +42,33 @@ class PongGame(Widget):
     alpha = 0
     playerpos = 0
 
-    start_time = None
-    time = 0
+    start_time = 0
 
     def __init__(self):
         super(PongGame, self).__init__()
         self.control = FaceRecognition()
         self.control.start()
 
-        self.t = Thread(target=self.start)
+        self.t = Thread(target=self.wait)
         self.t.start()
 
-    def start(self):
+    def wait(self):
         while True:
             if self.control.x is not None:
-                self.serve_ball()
-                self.start_time = datetime.now()
-                Clock.schedule_interval(self.update, 1.0 / 60.0)
-                Clock.schedule_interval(self.agent_movement, 1.0 / 10.0)
-                Clock.schedule_interval(self.player_movement, 1.0 / 120.0)
+                self.ball.opacity = 1
+                self.ids.start.text = 'Starting'
+                Clock.schedule_once(self.start, 2)
                 break
 
-    def serve_ball(self, vel=(10, 0)):
+    def start(self, dt):
+        self.ids.start.text = ''
+        self.serve_ball()
+        self.start_time = time()
+        Clock.schedule_interval(self.update, 1.0 / 60.0)
+        Clock.schedule_interval(self.agent_movement, 1.0 / 60.0)
+        Clock.schedule_interval(self.player_movement, 1.0 / 600.0)
+
+    def serve_ball(self, vel=(-10, 0)):
         self.ball.center = self.center
         self.ball.velocity = vel
 
@@ -80,7 +86,7 @@ class PongGame(Widget):
         if self.ball.x < self.x:
             self.ai_agent.score += 1
             # self.alpha -= 0.1
-            self.jump += 10
+            # self.jump += 10
             self.serve_ball(vel=(10, 0))
 
             self.reset()
@@ -88,14 +94,14 @@ class PongGame(Widget):
         if self.ball.x > self.width:
             self.player1.score += 1
             # self.alpha -= 0.1
-            self.jump += 10
+            # self.jump += 10
             self.serve_ball(vel=(-10, 0))
 
             self.reset()
 
     def reset(self):
         self.player1.highscore = max(self.player1.time, self.player1.highscore)
-        self.start_time = datetime.now()
+        self.start_time = time()
 
     def player_movement(self, dt):
         if abs(self.player1.center_y - self.playerpos) < 90:
@@ -135,7 +141,7 @@ class PongGame(Widget):
         self.playerpos = self.height/2 + (self.control.x-0.5) * self.height * 2
         # print(self.playerpos)
 
-        self.player1.time = datetime.now() - self.start_time
+        self.player1.time = round(time() - self.start_time, 1)
 
         self.ball.move()
 
