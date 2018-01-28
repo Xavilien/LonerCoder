@@ -1,15 +1,18 @@
 import random
 from kivy.app import App
 from kivy.uix.widget import Widget
-from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
+from kivy.properties import NumericProperty, ReferenceListProperty, Property, ObjectProperty
 from kivy.vector import Vector
 from kivy.clock import Clock
 from tfimgcontroller import FaceRecognition
 from threading import Thread
-from datetime import datetime
+from datetime import datetime, timedelta
+
 
 class PongPaddle(Widget):
     score = NumericProperty(0)
+    time = Property(timedelta(0))
+    highscore = Property(timedelta(0))
 
     def bounce_ball(self, ball):
         if self.collide_widget(ball):
@@ -79,14 +82,20 @@ class PongGame(Widget):
             # self.alpha -= 0.1
             self.jump += 10
             self.serve_ball(vel=(10, 0))
-            self.start_time = datetime.now()
+
+            self.reset()
 
         if self.ball.x > self.width:
             self.player1.score += 1
             # self.alpha -= 0.1
             self.jump += 10
             self.serve_ball(vel=(-10, 0))
-            self.start_time = datetime.now()
+
+            self.reset()
+
+    def reset(self):
+        self.player1.highscore = max(self.player1.time, self.player1.highscore)
+        self.start_time = datetime.now()
 
     def player_movement(self, dt):
         if abs(self.player1.center_y - self.playerpos) < 90:
@@ -94,14 +103,6 @@ class PongGame(Widget):
         elif self.player1.center_y < self.playerpos and self.player1.y + 200 < self.height:
             self.player1.center_y += self.jump
         elif self.player1.center_y > self.playerpos and self.player1.y > 0:
-            self.player1.center_y -= self.jump
-
-    def player_movement2(self, dt):
-        if abs(self.height/2 - self.playerpos) < 20:
-            return None
-        elif self.height/2 < self.playerpos and self.player1.y < self.height-200:
-            self.player1.center_y += self.jump
-        elif self.height/2 > self.playerpos and self.player1.y > 0:
             self.player1.center_y -= self.jump
 
     def agent_movement(self, dt):
@@ -134,7 +135,7 @@ class PongGame(Widget):
         self.playerpos = self.height/2 + (self.control.x-0.5) * self.height * 2
         # print(self.playerpos)
 
-        self.ids.stopwatch.text = str(datetime.now() - self.start_time)[:-3]
+        self.player1.time = datetime.now() - self.start_time
 
         self.ball.move()
 

@@ -22,7 +22,7 @@
     canvas:
         Rectangle:
             pos: self.center_x-5, 0
-            size: 10, self.height-150
+            size: 10, self.height-200
 
     Label:
         font_size: 70
@@ -40,8 +40,16 @@
         id: stopwatch
         font_size: 70
         center_x: root.width * 0.5
-        top: root.top - 50
-        text: '0:0:0.000'
+        top: root.top - 25
+        text: str(root.player1.time)[:-3]
+
+    Label:
+        id: highscore
+        font_size: 70
+        center_x: root.width * 0.5
+        top: root.top - 100
+        text: 'Highscore: ' + str(root.player1.highscore)[:-3]
+
 
     PongBall:
         id: pong_ball

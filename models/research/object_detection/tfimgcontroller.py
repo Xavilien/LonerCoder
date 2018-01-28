@@ -22,7 +22,7 @@ class FaceRecognition(Thread):
     # This is needed since the notebook is stored in the object_detection folder.
     sys.path.append("..")
     sys.path.append("data")
-    print(sys.path)
+    # print(sys.path)
 
     # ## Object detection imports
     # Here are the imports from the object detection module.
