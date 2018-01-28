@@ -17,7 +17,7 @@
 <PongGame>:
     ball: pong_ball
     player1: player_left
-    ai_agent: player_right
+    player2: player_right
 
     canvas:
         Rectangle:
@@ -34,7 +34,7 @@
         font_size: 70
         center_x: root.width * 3 / 4
         top: root.top - 50
-        text: str(root.ai_agent.score)
+        text: str(root.player2.score)
 
     PongBall:
         id: pong_ball
