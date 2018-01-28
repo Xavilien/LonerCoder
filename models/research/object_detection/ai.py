@@ -6,7 +6,7 @@ from kivy.vector import Vector
 from kivy.clock import Clock
 from tfimgcontroller import FaceRecognition
 from threading import Thread
-
+from datetime import datetime
 
 class PongPaddle(Widget):
     score = NumericProperty(0)
@@ -35,8 +35,11 @@ class PongGame(Widget):
     ai_agent = ObjectProperty(None)
     expected_y = None
     jump = 30
-    alpha = 0.9
+    alpha = 0
     playerpos = 0
+
+    start_time = None
+    time = 0
 
     def __init__(self):
         super(PongGame, self).__init__()
@@ -50,9 +53,10 @@ class PongGame(Widget):
         while True:
             if self.control.x is not None:
                 self.serve_ball()
+                self.start_time = datetime.now()
                 Clock.schedule_interval(self.update, 1.0 / 60.0)
                 Clock.schedule_interval(self.agent_movement, 1.0 / 10.0)
-                Clock.schedule_interval(self.player_movement, 1.0 / 20.0)
+                Clock.schedule_interval(self.player_movement, 1.0 / 120.0)
                 break
 
     def serve_ball(self, vel=(10, 0)):
@@ -72,21 +76,24 @@ class PongGame(Widget):
         # went of to a side to score point?
         if self.ball.x < self.x:
             self.ai_agent.score += 1
-            self.alpha -= 0.1
+            # self.alpha -= 0.1
             self.jump += 10
             self.serve_ball(vel=(10, 0))
+            self.start_time = datetime.now()
+
         if self.ball.x > self.width:
             self.player1.score += 1
-            self.alpha -= 0.1
+            # self.alpha -= 0.1
             self.jump += 10
             self.serve_ball(vel=(-10, 0))
+            self.start_time = datetime.now()
 
     def player_movement(self, dt):
         if abs(self.player1.center_y - self.playerpos) < 90:
             return None
-        elif self.player1.center_y < self.playerpos:
+        elif self.player1.center_y < self.playerpos and self.player1.y + 200 < self.height:
             self.player1.center_y += self.jump
-        elif self.player1.center_y > self.playerpos:
+        elif self.player1.center_y > self.playerpos and self.player1.y > 0:
             self.player1.center_y -= self.jump
 
     def player_movement2(self, dt):
@@ -123,8 +130,11 @@ class PongGame(Widget):
         elif self.expected_y < self.y:
             self.expected_y = 0
 
+        # Update position of head
         self.playerpos = self.height/2 + (self.control.x-0.5) * self.height * 2
-        print(self.playerpos)
+        # print(self.playerpos)
+
+        self.ids.stopwatch.text = str(datetime.now() - self.start_time)[:-3]
 
         self.ball.move()
 
