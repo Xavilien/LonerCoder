@@ -27,7 +27,7 @@ class PongGame(Widget):
 
     playerno = 0
 
-    HOST, PORT = "192.168.43.122", 4000
+    HOST, PORT = "192.168.43.122", 8888
     sock = socket(AF_INET, SOCK_STREAM)
 
     def __init__(self):
@@ -74,12 +74,13 @@ class PongGame(Widget):
             # "player1pos player2pos ballposx ballposy player1score player2score"
             response = [int(i) for i in str(self.sock.recv(1024), 'ascii').split()]
 
-            self.player1pos = response[0]
-            self.player2pos = response[1]
-            self.ballposx = response[2]
-            self.ballposy = response[3]
-            self.player1.score = response[4]
-            self.player2.score = response[5]
+            if len(response) == 6:
+                self.player1pos = response[0]
+                self.player2pos = response[1]
+                self.ballposx = response[2]
+                self.ballposy = response[3]
+                self.player1.score = response[4]
+                self.player2.score = response[5]
 
     def display(self):
         self.player1.center_y = self.player1pos
