@@ -29,12 +29,15 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
 
     def do_POST(self):
         data[mapdict[self.client_address[0]]] = float(self.reqinput[1])  # Update player positions
+        self.request.sendall(bytes(" ".join([str(i) for i in data]), 'ascii'))
 
     def do_PLAYER(self):
         if len(mapdict.keys()) == 0:
             mapdict[self.client_address[0]] = 0
+            print("Player 1 Connected")
         else:
             mapdict[self.client_address[0]] = 1
+            print("Player 2 Connected")
         self.request.sendall(bytes("True", 'ascii'))
 
 
@@ -71,7 +74,7 @@ class PongGame(Widget):
     player2 = ObjectProperty(None)
     jump = 30
 
-    HOST, PORT = "localhost", 8000
+    HOST, PORT = "192.168.43.122", 6000
     server = ThreadedTCPServer((HOST, PORT), ThreadedTCPRequestHandler)
     ip, port = server.server_address
     server_thread = threading.Thread(target=server.serve_forever)
@@ -153,3 +156,36 @@ class AIApp(App):
 
 if __name__ == '__main__':
     AIApp().run()
+
+"""
+class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
+    def handle(self):
+        data = str(self.request.recv(1024), 'ascii')
+        cur_thread = threading.current_thread()
+        response = bytes("{}: {}".format(cur_thread.name, data), 'ascii')
+        self.request.sendall(response)
+
+class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
+    pass
+
+def client(ip, port, message):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.connect((ip, port))
+        sock.sendall(bytes(message, 'ascii'))
+        response = str(sock.recv(1024), 'ascii')
+        print("Received: {}".format(response))
+
+if __name__ == "__main__":
+    HOST, PORT = "", 9000
+    server = ThreadedTCPServer((HOST, PORT), ThreadedTCPRequestHandler)
+    ip, port = server.server_address
+    server_thread = threading.Thread(target=server.serve_forever)
+    server_thread.daemon = True
+    server_thread.start()
+    client('192.168.43.122', port, "hello world")
+    try:
+        while True:
+            print(0)
+    except KeyboardInterrupt:
+        server.shutdown()
+"""
