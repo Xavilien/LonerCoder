@@ -91,7 +91,6 @@ class PongGame(Widget):
             self.player1.time = '>9000'
 
     def reset(self):
-        self.player1.highscore = max(self.player1.time, self.player1.highscore)
         self.start_time = time()
 
     def player_movement(self, dt):
@@ -122,10 +121,11 @@ class PongGame(Widget):
         self.predict()
 
         # Update position of head
-        self.playerpos = self.width/2 + (0.5-self.control.x) * self.width
+        self.playerpos = self.width/2 + (0.5-self.control.x) * self.width * 2
         # print(self.control.x)
 
         self.player1.time = round(time() - self.start_time, 1)
+        self.player1.highscore = max(self.player1.time, self.player1.highscore)
 
         self.ball.move()
 
