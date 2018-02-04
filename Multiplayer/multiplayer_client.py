@@ -1,5 +1,7 @@
 from threading import Thread
-import requests
+import json
+import request
+import time
 
 
 class Client(Thread):
@@ -9,16 +11,25 @@ class Client(Thread):
         self.HOST = host
         self.PORT = port
         self.data = None
+        self.playerID = None
 
     def run(self):
+        self.player()
         while True:
+            time.sleep(0.2)
             self.check()
+            print(self.data)
 
     def check(self):
-        r = requests.get('http://%s:%d' %(self.HOST, self.PORT))
-        self.data = r.json()['data']
-        print(self.data)
+        url = 'http://%s:%d' % (self.HOST, self.PORT)
+        with request.get(url, params={"player": 0}) as r:
+            self.data = json.loads(r.read().decode("utf-8"))
 
+    def player(self):
+        url = 'http://%s:%d' % (self.HOST, self.PORT)
+        with request.get(url, params={"player": 1}) as r:
+            self.playerID = json.loads(r.read().decode("utf-8"))["playerID"]
+            print("You are player " + str(self.playerID))
 
 if __name__ == '__main__':
     c = Client('localhost', 8000)
