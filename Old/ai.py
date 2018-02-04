@@ -6,7 +6,6 @@ from kivy.vector import Vector
 from kivy.clock import Clock
 from tfimgcontroller import FaceRecognition
 from threading import Thread
-from datetime import datetime
 from time import time
 
 

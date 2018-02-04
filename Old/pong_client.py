@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.uix.widget import Widget
-from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
+from kivy.properties import NumericProperty, ObjectProperty
 from tfimgcontroller import FaceRecognition
 from socket import socket, AF_INET, SOCK_STREAM
 from kivy.clock import Clock

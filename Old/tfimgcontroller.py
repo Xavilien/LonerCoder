@@ -4,6 +4,7 @@ import six.moves.urllib as urllib
 import sys
 import tarfile
 import tensorflow as tf
+
 import zipfile
 
 
@@ -48,10 +49,10 @@ class FaceRecognition(Thread):
     DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
 
     # Path to frozen detection graph. This is the actual model that is used for the object detection.
-    PATH_TO_CKPT = 'models/research/object_detection/' + MODEL_NAME + '/frozen_inference_graph.pb'
+    PATH_TO_CKPT = '../models/research/object_detection/' + MODEL_NAME + '/frozen_inference_graph.pb'
 
     # List of the strings that is used to add correct label for each box.
-    PATH_TO_LABELS = os.path.join('models', 'research', 'object_detection', 'data', 'mscoco_label_map.pbtxt')
+    PATH_TO_LABELS = '../models/research/object_detection/data/mscoco_label_map.pbtxt'
 
     NUM_CLASSES = 90
 
