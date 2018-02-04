@@ -20,5 +20,6 @@ class Client(Thread):
         print(self.data)
 
 
-c = Client('localhost', 8000)
-c.start()
+if __name__ == '__main__':
+    c = Client('localhost', 8000)
+    c.start()

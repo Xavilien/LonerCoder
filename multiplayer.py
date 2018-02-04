@@ -1,12 +1,14 @@
 import random
-from kivy.app import App
-from kivy.uix.widget import Widget
-from kivy.properties import NumericProperty, ReferenceListProperty, Property, ObjectProperty
-from kivy.vector import Vector
-from kivy.clock import Clock
-from tfimgcontroller import FaceRecognition
 from threading import Thread
 from time import time
+
+from kivy.app import App
+from kivy.clock import Clock
+from kivy.properties import NumericProperty, ReferenceListProperty, Property, ObjectProperty
+from kivy.uix.widget import Widget
+from kivy.vector import Vector
+from tfimgcontroller import FaceRecognition
+from multiplayer_client import Client
 
 
 class PongPaddle(Widget):
@@ -133,11 +135,11 @@ class PongGame(Widget):
         self.check_win()
 
 
-class AI2App(App):
+class MultiplayerApp(App):
     def build(self):
         game = PongGame()
         return game
 
 
 if __name__ == '__main__':
-    AI2App().run()
+    MultiplayerApp().run()
