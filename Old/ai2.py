@@ -14,6 +14,11 @@ class PongPaddle(Widget):
     time = Property(0.0)
     highscore = Property(0.0)
 
+    '''
+    If the ball has collided with the paddle, the ball changes y direction, as well as x direction based on the offset
+    of the ball from the center 
+    '''
+
     def bounce_ball(self, ball):
         if self.collide_widget(ball):
             vx, vy = ball.velocity
@@ -36,9 +41,10 @@ class PongGame(Widget):
     ball = ObjectProperty(None)
     player1 = ObjectProperty(None)
     ai_agent = ObjectProperty(None)
+
     expected_x = None
-    jump = 30  # Distance the paddles can move each clock cycle
     playerpos = 0
+    jump = 30  # Distance the paddles can move each clock cycle
 
     start_time = 0  # Allow us to calculate time elapsed since game started
 
@@ -147,7 +153,7 @@ class PongGame(Widget):
 
         # Update position of head by adding the offset to half the width
         sensitivity = 2
-        offset = 0.5 - self.detector.x * self.width  # How far the head is from the center
+        offset = (0.5 - self.detector.x) * self.width  # How far the head is from the center
         self.playerpos = self.width / 2 + offset * sensitivity
         # print(self.detector.x)
 

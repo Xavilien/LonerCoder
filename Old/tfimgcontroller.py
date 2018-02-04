@@ -77,7 +77,7 @@ class FaceDetection(Thread):
     x = None
 
     def __init__(self):
-        super(FaceRecognition, self).__init__()
+        super(FaceDetection, self).__init__()
 
     def run(self):
         self.capture()
@@ -126,4 +126,4 @@ class FaceDetection(Thread):
 
 
 if __name__ == '__main__':
-    FaceRecognition().capture()
+    FaceDetection().capture()
