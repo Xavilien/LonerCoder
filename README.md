@@ -19,6 +19,12 @@ Basically,
 2) Git clone pyinstaller into the directory
 3) run pyinstaller/pyinstaller.py specfile.spec
 
+#### Thing to take note of when compiling
+1) Clone the Kivy virtualenv to use cos for some reason it does not work when I create a new env by scratch
+2) Run the touchtracer executable in dist/FolderwithAppName so that you can see the outputs and any errors
+3) Make the multiplayer.kv the same place as the touchtracer executable as this is what will be run
+4) Logs can be found in /Users/xavilien/.kivy/logs/
+
 ### Resources
 
 - Tensorflow: https://www.tensorflow.org

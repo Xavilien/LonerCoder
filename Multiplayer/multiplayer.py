@@ -8,9 +8,6 @@ from kivy.properties import NumericProperty, ReferenceListProperty, Property, Ob
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from tfimgcontroller import FaceDetection
-from kivy.lang.builder import Builder
-
-Builder.load_file('multiplayer.kv')
 
 
 class PongPaddle(Widget):
