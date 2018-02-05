@@ -25,6 +25,11 @@ Basically,
 3) Make the multiplayer.kv the same place as the touchtracer executable as this is what will be run
 4) Logs can be found in /Users/xavilien/.kivy/logs/
 
+### Known issues
+1) Resolution when running it as an app is a bit off - (set resolution?)
+2) The programme is very slow - (remove unecessary tensorflow object detection api code?)
+3) The app cannot be quit properly and will hang and has to be force closed - (create a cleanup app furction)
+
 ### Resources
 
 - Tensorflow: https://www.tensorflow.org
