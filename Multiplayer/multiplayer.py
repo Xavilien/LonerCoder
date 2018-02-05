@@ -8,6 +8,9 @@ from kivy.properties import NumericProperty, ReferenceListProperty, Property, Ob
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from tfimgcontroller import FaceDetection
+from kivy.lang.builder import Builder
+
+Builder.load_file('multiplayer.kv')
 
 
 class PongPaddle(Widget):
@@ -49,10 +52,21 @@ class PongGame(Widget):
 
     def __init__(self):
         super(PongGame, self).__init__()
+        ball = ObjectProperty(None)
+        player1 = ObjectProperty(None)
+        ai_agent = ObjectProperty(None)
+
+        expected_x = None
+        playerpos = 0
+        jump = 30  # Distance the paddles can move each clock cycle
+
+        start_time = 0  # Allow us to calculate time elapsed since game started
+
         self.detector = FaceDetection()
         self.detector.start()
 
         self.t = Thread(target=self.wait)
+
         self.t.start()
 
     '''

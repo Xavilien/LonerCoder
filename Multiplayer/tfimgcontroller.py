@@ -4,18 +4,22 @@ import tensorflow as tf
 import cv2
 from threading import Thread
 
-# ## Object detection imports
-# Here are the imports from the object detection module.
-from utils import label_map_util
-
 
 class FaceDetection(Thread):
     cap = cv2.VideoCapture(0)
 
+    path = "/Users/xavilien/Desktop/School/1Secondary/2018/Non-Core/CEP/LonerCoder/"
+
     # This is needed since the notebook is stored in the object_detection folder.
     sys.path.append("..")
     sys.path.append("data")
+    sys.path.append(path + "models/research/object_detection")
+    sys.path.append(path + "models/research/")
     # print(sys.path)
+
+    # ## Object detection imports
+    # Here are the imports from the object detection module.
+    from utils import label_map_util
 
     # # Model preparation
 
@@ -34,10 +38,10 @@ class FaceDetection(Thread):
     DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
 
     # Path to frozen detection graph. This is the actual model that is used for the object detection.
-    PATH_TO_CKPT = '../models/research/object_detection/' + MODEL_NAME + '/frozen_inference_graph.pb'
+    PATH_TO_CKPT = path + '/models/research/object_detection/' + MODEL_NAME + '/frozen_inference_graph.pb'
 
     # List of the strings that is used to add correct label for each box.
-    PATH_TO_LABELS = '../models/research/object_detection/data/mscoco_label_map.pbtxt'
+    PATH_TO_LABELS = path + '/models/research/object_detection/data/mscoco_label_map.pbtxt'
 
     NUM_CLASSES = 90
 

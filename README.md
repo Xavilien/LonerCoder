@@ -10,6 +10,15 @@ This is a remake of the ATARI game pong with two additional features:
 
 We used python, OpenCV and the almighty Tensorflow Object Detection API to track your face. For the multiplayer functionality, we used a socketserver with HTTP requests. This allows for concurrency so that you can play with your friends!
 
+### How to compile to an app
+
+https://kivy.org/docs/guide/packaging-osx.html?highlight=package
+Refer to the section on using PyInstaller without Homebrew
+Basically, 
+1) Create a spec file
+2) Git clone pyinstaller into the directory
+3) run pyinstaller/pyinstaller.py specfile.spec
+
 ### Resources
 
 - Tensorflow: https://www.tensorflow.org
