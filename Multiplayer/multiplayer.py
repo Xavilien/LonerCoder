@@ -1,5 +1,6 @@
 import random
 from time import time
+import threading
 
 from kivy.app import App
 from kivy.clock import Clock
@@ -8,7 +9,9 @@ from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from tfimgcontroller import FaceDetection
 
-import threading
+from kivy.config import Config
+Config.set('graphics', 'width', '1920')
+Config.set('graphics', 'height', '800')
 
 
 class PongPaddle(Widget):
