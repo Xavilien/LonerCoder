@@ -1,5 +1,4 @@
 import random
-from threading import Thread
 from time import time
 
 from kivy.app import App
@@ -8,6 +7,8 @@ from kivy.properties import NumericProperty, ReferenceListProperty, Property, Ob
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from tfimgcontroller import FaceDetection
+
+import threading
 
 
 class PongPaddle(Widget):
@@ -48,25 +49,29 @@ class PongGame(Widget):
 
     start_time = 0  # Allow us to calculate time elapsed since game started
 
+    # Allow us to close thread before exiting the app
+    control = threading.Event()
+    control.set()
+
     def __init__(self):
         super(PongGame, self).__init__()
-        self.detector = FaceDetection()
+
+        self.detector = FaceDetection(self.control)
         self.detector.start()
 
-        self.t = Thread(target=self.wait)
-        self.t.start()
+        Clock.schedule_once(self.wait, 1 / 10)
 
     '''
     Wait for the facedetection to be loaded so that the game doesn't start when it is not ready
     '''
 
-    def wait(self):
-        while True:
-            if self.detector.x is not None:
-                self.ball.opacity = 1
-                self.ids.start.text = 'Starting'
-                Clock.schedule_once(self.start, 2)
-                break
+    def wait(self, dt):
+        if self.detector.x is not None:
+            self.ball.opacity = 1
+            self.ids.start.text = 'Starting'
+            Clock.schedule_once(self.start, 2)
+        else:
+            Clock.schedule_once(self.wait, 1 / 10)
 
     def start(self, dt):
         self.ids.start.text = ''
@@ -168,9 +173,14 @@ class PongGame(Widget):
 
 
 class AI2App(App):
+
     def build(self):
         game = PongGame()
         return game
+
+    def on_stop(self):
+        self.root.control.clear()
+        return
 
 
 if __name__ == '__main__':

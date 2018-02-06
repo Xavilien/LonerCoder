@@ -1,36 +1,25 @@
 import numpy as np
-import os
-import six.moves.urllib as urllib
 import sys
-import tarfile
 import tensorflow as tf
-
-import zipfile
-
-
-from collections import defaultdict
-from io import StringIO
-from matplotlib import pyplot as plt
-from PIL import Image
-
 import cv2
-
 from threading import Thread
 
 
 class FaceDetection(Thread):
     cap = cv2.VideoCapture(0)
 
+    path = "/Users/xavilien/Desktop/School/1Secondary/2018/Non-Core/CEP/LonerCoder/"
+
     # This is needed since the notebook is stored in the object_detection folder.
     sys.path.append("..")
     sys.path.append("data")
+    sys.path.append(path + "models/research/object_detection")
+    sys.path.append(path + "models/research/")
     # print(sys.path)
 
     # ## Object detection imports
     # Here are the imports from the object detection module.
-
     from utils import label_map_util
-    from utils import visualization_utils as vis_util
 
     # # Model preparation
 
@@ -49,10 +38,10 @@ class FaceDetection(Thread):
     DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
 
     # Path to frozen detection graph. This is the actual model that is used for the object detection.
-    PATH_TO_CKPT = '../models/research/object_detection/' + MODEL_NAME + '/frozen_inference_graph.pb'
+    PATH_TO_CKPT = path + '/models/research/object_detection/' + MODEL_NAME + '/frozen_inference_graph.pb'
 
     # List of the strings that is used to add correct label for each box.
-    PATH_TO_LABELS = '../models/research/object_detection/data/mscoco_label_map.pbtxt'
+    PATH_TO_LABELS = path + '/models/research/object_detection/data/mscoco_label_map.pbtxt'
 
     NUM_CLASSES = 90
 
@@ -75,9 +64,11 @@ class FaceDetection(Thread):
     category_index = label_map_util.create_category_index(categories)
 
     x = None
+    stop = False
 
-    def __init__(self):
+    def __init__(self, event):
         super(FaceDetection, self).__init__()
+        self.event = event  # Allow us to stop the thread when app is quit
 
     def run(self):
         self.capture()
@@ -86,44 +77,30 @@ class FaceDetection(Thread):
         # Detection
         with self.detection_graph.as_default():
             with tf.Session(graph=self.detection_graph) as sess:
-                while True:
+                while self.event.is_set():
                     ret, image_np = self.cap.read()
                     # Expand dimensions since the model expects images to have shape: [1, None, None, 3]
                     image_np_expanded = np.expand_dims(image_np, axis=0)
                     image_tensor = self.detection_graph.get_tensor_by_name('image_tensor:0')
+
                     # Each box represents a part of the image where a particular object was detected.
                     boxes = self.detection_graph.get_tensor_by_name('detection_boxes:0')
+
                     # Each score represent how level of confidence for each of the objects.
                     # Score is shown on the result image, together with the class label.
                     scores = self.detection_graph.get_tensor_by_name('detection_scores:0')
                     classes = self.detection_graph.get_tensor_by_name('detection_classes:0')
                     num_detections = self.detection_graph.get_tensor_by_name('num_detections:0')
+
                     # Actual detection.
                     (boxes, scores, classes, num_detections) = sess.run(
                         [boxes, scores, classes, num_detections],
                         feed_dict={image_tensor: image_np_expanded})
-                    # Visualization of the results of a detection.
 
+                    # Get only the people in the frame
                     _, person_elements = np.where(classes == 1)
-                    fscores = [0 if i != person_elements[0] else 1 for i in range(len(np.squeeze(scores)))]
 
-                    self.vis_util.visualize_boxes_and_labels_on_image_array(
-                        image_np,
-                        np.squeeze(boxes),
-                        np.squeeze(classes).astype(np.int32),
-                        np.squeeze(np.array(fscores)),
-                        self.category_index,
-                        use_normalized_coordinates=True,
-                        line_thickness=8)
-
-                    self.x = ((boxes[0][person_elements[0]][3]+boxes[0][person_elements[0]][1])/2)
+                    # Get the x-coordinate of the person by taking the average x-coordinate of two corners
+                    person = boxes[0][person_elements[0]]
+                    self.x = (person[1] + person[3]) / 2
                     # print(self.x)
-
-                    # cv2.imshow('object detection', cv2.resize(image_np, (800, 600)))
-                    if cv2.waitKey(25) & 0xFF == ord('q'):
-                        cv2.destroyAllWindows()
-                        break
-
-
-if __name__ == '__main__':
-    FaceDetection().capture()

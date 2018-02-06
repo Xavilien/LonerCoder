@@ -3,7 +3,6 @@ import sys
 import tensorflow as tf
 import cv2
 from threading import Thread
-import threading
 
 
 class FaceDetection(Thread):
