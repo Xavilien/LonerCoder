@@ -7,7 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/models/research/object_detection" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Multiplayer" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (FacePong)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6 (Pong)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TestRunnerService">

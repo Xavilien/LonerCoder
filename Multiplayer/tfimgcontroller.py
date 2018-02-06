@@ -3,6 +3,7 @@ import sys
 import tensorflow as tf
 import cv2
 from threading import Thread
+import threading
 
 
 class FaceDetection(Thread):
@@ -66,8 +67,9 @@ class FaceDetection(Thread):
     x = None
     stop = False
 
-    def __init__(self):
+    def __init__(self, event):
         super(FaceDetection, self).__init__()
+        self.event = event  # Allow us to stop the thread when app is quit
 
     def run(self):
         self.capture()
@@ -76,7 +78,7 @@ class FaceDetection(Thread):
         # Detection
         with self.detection_graph.as_default():
             with tf.Session(graph=self.detection_graph) as sess:
-                while True:
+                while self.event.is_set():
                     ret, image_np = self.cap.read()
                     # Expand dimensions since the model expects images to have shape: [1, None, None, 3]
                     image_np_expanded = np.expand_dims(image_np, axis=0)
@@ -103,6 +105,3 @@ class FaceDetection(Thread):
                     person = boxes[0][person_elements[0]]
                     self.x = (person[1] + person[3]) / 2
                     # print(self.x)
-
-                    if self.stop:
-                        return

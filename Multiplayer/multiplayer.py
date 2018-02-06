@@ -8,6 +8,8 @@ from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from tfimgcontroller import FaceDetection
 
+import threading
+
 
 class PongPaddle(Widget):
     time = Property(0.0)
@@ -46,10 +48,14 @@ class PongGame(Widget):
 
     start_time = 0  # Allow us to calculate time elapsed since game started
 
+    # Allow us to close thread before exiting the app
+    control = threading.Event()
+    control.set()
+
     def __init__(self):
         super(PongGame, self).__init__()
 
-        self.detector = FaceDetection()
+        self.detector = FaceDetection(self.control)
         self.detector.start()
 
         Clock.schedule_once(self.wait, 1/10)
@@ -167,7 +173,7 @@ class MultiplayerApp(App):
         return game
 
     def on_stop(self):
-        self.root.detector.stop = True
+        self.root.control.clear()
         return
 
 
