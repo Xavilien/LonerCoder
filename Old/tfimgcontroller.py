@@ -18,7 +18,7 @@ import cv2
 from threading import Thread
 
 
-class FaceRecognition(Thread):
+class FaceDetection(Thread):
     cap = cv2.VideoCapture(0)
 
     # This is needed since the notebook is stored in the object_detection folder.
@@ -77,7 +77,7 @@ class FaceRecognition(Thread):
     x = None
 
     def __init__(self):
-        super(FaceRecognition, self).__init__()
+        super(FaceDetection, self).__init__()
 
     def run(self):
         self.capture()
@@ -126,4 +126,4 @@ class FaceRecognition(Thread):
 
 
 if __name__ == '__main__':
-    FaceRecognition().capture()
+    FaceDetection().capture()
