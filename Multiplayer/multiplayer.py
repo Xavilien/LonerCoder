@@ -9,6 +9,8 @@ from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from tfimgcontroller import FaceDetection
 
+from kivy.uix.screenmanager import ScreenManager
+
 from kivy.config import Config
 Config.set('graphics', 'width', '1920')
 Config.set('graphics', 'height', '800')
@@ -40,7 +42,7 @@ class PongBall(Widget):
         self.pos = Vector(*self.velocity) + self.pos
 
 
-class PongGame(Widget):
+class PongGame(ScreenManager):
     ball = ObjectProperty(None)
     player1 = ObjectProperty(None)
     ai_agent = ObjectProperty(None)
@@ -57,6 +59,8 @@ class PongGame(Widget):
 
     def __init__(self):
         super(PongGame, self).__init__()
+
+        self.current = 'play'
 
         self.detector = FaceDetection(self.control)
         self.detector.start()
