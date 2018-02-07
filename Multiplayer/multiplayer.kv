@@ -62,6 +62,13 @@
                 y: self.parent.height-self.height
                 center_x: self.parent.center_x
 
+            PongPaddle:
+                id: marker
+                size: dp(10), dp(10)
+                color: (255, 0, 0, 1)
+                y: self.parent.height-self.height
+                center_x: root.detector.x * self.parent.width if root.detector is not None and root.detector.x is not None else self.parent.center_x
+
 <Label>:
     font_size: '70px'
     center_x: self.parent.width*0.5

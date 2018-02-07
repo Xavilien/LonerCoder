@@ -46,6 +46,7 @@ class PongGame(ScreenManager):
     ball = ObjectProperty(None)
     player1 = ObjectProperty(None)
     ai_agent = ObjectProperty(None)
+    detector = None
 
     expected_x = None
     playerpos = 0
