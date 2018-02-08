@@ -64,7 +64,6 @@ class FaceDetection(Thread):
     category_index = label_map_util.create_category_index(categories)
 
     x = None
-    stop = False
 
     def __init__(self, event):
         super(FaceDetection, self).__init__()

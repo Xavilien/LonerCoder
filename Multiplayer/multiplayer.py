@@ -2,6 +2,7 @@ import random
 from time import time
 import threading
 from tfimgcontroller import FaceDetection
+import os
 
 from kivy.app import App
 from kivy.clock import Clock
@@ -15,6 +16,7 @@ from kivy.config import Config
 Config.set('graphics', 'width', '1920')
 Config.set('graphics', 'height', '800')
 
+# Load the kv file if it is not in the same folder as this file
 try:
     Builder.load_file('Multiplayer/multiplayer.kv')
 except FileNotFoundError:
@@ -71,18 +73,18 @@ class PongGame(ScreenManager):
         self.detector = FaceDetection(self.control)
         self.detector.start()
 
-        Clock.schedule_once(self.wait, 1/10)
+        self.waiting = threading.Thread(target=self.wait)
 
     '''
     Wait for the facedetection to be loaded so that the game doesn't start when it is not ready
     '''
     def wait(self, dt):
-        if self.detector.x is not None:
+        while self.detector.x is None and self.control.is_set():
+            pass
+        if self.control.is_set():
             self.ball.opacity = 1
             self.ids.start.text = 'Starting'
-            Clock.schedule_once(self.start, 2)
-        else:
-            Clock.schedule_once(self.wait, 1/10)
+            Clock.schedule_once(self.start, 1)
 
     def start(self, dt):
         self.ids.start.text = ''
@@ -187,7 +189,7 @@ class MultiplayerApp(App):
 
     def on_stop(self):
         self.root.control.clear()
-        return
+        sys.exit()
 
 
 if __name__ == '__main__':
