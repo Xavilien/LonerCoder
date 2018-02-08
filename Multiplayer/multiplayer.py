@@ -1,19 +1,24 @@
 import random
 from time import time
 import threading
+from tfimgcontroller import FaceDetection
 
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.properties import NumericProperty, ReferenceListProperty, Property, ObjectProperty
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
-from tfimgcontroller import FaceDetection
-
 from kivy.uix.screenmanager import ScreenManager
+from kivy.lang.builder import Builder
 
 from kivy.config import Config
 Config.set('graphics', 'width', '1920')
 Config.set('graphics', 'height', '800')
+
+try:
+    Builder.load_file('Multiplayer/multiplayer.kv')
+except FileNotFoundError:
+    pass
 
 
 class PongPaddle(Widget):
