@@ -3,6 +3,7 @@ import sys
 import tensorflow as tf
 import cv2
 from threading import Thread
+from time import sleep
 
 
 class FaceDetection(Thread):
@@ -33,9 +34,9 @@ class FaceDetection(Thread):
     # for a list of other models that can be run out-of-the-box with varying speeds and accuracies.
 
     # What model to download.
+    # MODEL_FILE = MODEL_NAME + '.tar.gz'
+    # DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
     MODEL_NAME = 'ssd_mobilenet_v1_coco_11_06_2017'
-    MODEL_FILE = MODEL_NAME + '.tar.gz'
-    DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
 
     # Path to frozen detection graph. This is the actual model that is used for the object detection.
     PATH_TO_CKPT = path + '/models/research/object_detection/' + MODEL_NAME + '/frozen_inference_graph.pb'
@@ -103,3 +104,5 @@ class FaceDetection(Thread):
                     person = boxes[0][person_elements[0]]
                     self.x = (person[1] + person[3]) / 2
                     # print(self.x)
+
+                    sleep(0.1)

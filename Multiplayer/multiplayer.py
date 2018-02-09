@@ -2,7 +2,7 @@ import random
 from time import time
 import threading
 from tfimgcontroller import FaceDetection
-import os
+import sys
 
 from kivy.app import App
 from kivy.clock import Clock
@@ -74,11 +74,12 @@ class PongGame(ScreenManager):
         self.detector.start()
 
         self.waiting = threading.Thread(target=self.wait)
+        self.waiting.start()
 
     '''
     Wait for the facedetection to be loaded so that the game doesn't start when it is not ready
     '''
-    def wait(self, dt):
+    def wait(self):
         while self.detector.x is None and self.control.is_set():
             pass
         if self.control.is_set():
@@ -173,7 +174,10 @@ class PongGame(ScreenManager):
 
         # Update the stopwatch with the time elapsed
         self.player1.time = round(time() - self.start_time, 1)
-        self.player1.highscore = max(self.player1.time, self.player1.highscore)
+        try:
+            self.player1.highscore = max(self.player1.time, self.player1.highscore)
+        except TypeError:
+            sys.exit()
 
         self.ball.move()
 
