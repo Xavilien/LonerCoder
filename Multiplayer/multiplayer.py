@@ -11,6 +11,7 @@ from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from kivy.uix.screenmanager import ScreenManager
 from kivy.lang.builder import Builder
+from kivy.metrics import dp
 
 from kivy.config import Config
 Config.set('graphics', 'width', '1920')
@@ -57,7 +58,7 @@ class PongGame(ScreenManager):
 
     expected_x = None
     playerpos = 0
-    jump = 30  # Distance the paddles can move each clock cycle
+    jump = dp(20)  # Distance the paddles can move each clock cycle
 
     start_time = 0  # Allow us to calculate time elapsed since game started
 
@@ -98,7 +99,7 @@ class PongGame(ScreenManager):
     '''
     The ball is not served perpendicular to the paddle so that the player cannot stall by not moving
     '''
-    def serve_ball(self, vel=(2*(0.5-random.random()), -10)):
+    def serve_ball(self, vel=(dp(0.5-random.random()), dp(-5))):
         self.ball.center = self.center
         self.ball.velocity = vel  # Get the ball to start moving
 
@@ -140,19 +141,27 @@ class PongGame(ScreenManager):
     Paddles move a bit each clock cycle so that the paddles do not seem to 'jump'
     '''
     def player_movement(self, dt):
-        if abs(self.player1.center_x - self.playerpos) < 90:
+        center = self.player1.center_x
+        width = self.ids.player_bottom.size[0]/2
+
+        if abs(center - self.playerpos) < width:
             return None
-        elif self.playerpos > self.player1.center_x and self.player1.center_x < self.width-100:
+        elif self.playerpos > center and center < self.width - width:
             self.player1.center_x += self.jump
-        elif self.playerpos < self.player1.center_x and self.player1.center_x > 100:
+        elif self.playerpos < center and center > width:
             self.player1.center_x -= self.jump
 
     def agent_movement(self, dt):
-        if abs(self.ai_agent.center_x - self.expected_x) < 90:
+        self.predict()
+
+        center = self.ai_agent.center_x
+        width = self.ids.player_top.size[0] / 2
+
+        if abs(center - self.expected_x) < width:
             return None
-        elif self.ai_agent.center_x < self.expected_x:
+        elif center < self.expected_x:
             self.ai_agent.center_x += self.jump
-        elif self.ai_agent.center_x > self.expected_x:
+        elif center > self.expected_x:
             self.ai_agent.center_x -= self.jump
 
     def predict(self):
@@ -164,8 +173,6 @@ class PongGame(ScreenManager):
             self.expected_x = 0
 
     def update(self, dt):
-        self.predict()
-
         # Update position of head by adding the offset to half the width
         sensitivity = 2
         offset = (0.5-self.detector.x) * self.width  # How far the head is from the center
