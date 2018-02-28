@@ -118,8 +118,8 @@ class PongGame(ScreenManager):
     def check_win(self):
         # went of to a side to end game?
         if self.ball.y < self.y:
-            self.serve_ball()
             self.reset()
+            self.serve_ball()
 
         # Since it is very unlikely for the player to win, so the game crashes if that happens
         if self.ball.y > self.height:
@@ -133,6 +133,7 @@ class PongGame(ScreenManager):
     '''
     def reset(self):
         self.start_time = time()
+        self.player1.center_x = self.width/2
 
     '''
     Paddles only move if the x-coordinate of the person is far enough from the center of the paddle so that it is easier
