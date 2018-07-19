@@ -19,7 +19,7 @@ Config.set('graphics', 'height', '800')
 
 # Load the kv file if it is not in the same folder as this file
 try:
-    Builder.load_file('Multiplayer/multiplayer.kv')
+    Builder.load_file('Client/multiplayer.kv')
 except FileNotFoundError:
     pass
 

@@ -5,7 +5,7 @@ from urllib.parse import parse_qs
 import json
 
 
-mapdict = {}
+data = {"ball": None}
 
 
 class Handler(BaseHTTPRequestHandler):

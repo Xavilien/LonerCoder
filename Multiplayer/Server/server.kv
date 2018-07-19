@@ -37,16 +37,6 @@
                     size: self.width, dp(5)
 
             Label:
-                id: stopwatch
-                top: self.parent.top - dp(10)
-                text: str(root.player1.time) + 's'
-
-            Label:
-                id: highscore
-                top: self.parent.top - dp(50)
-                text: 'Highscore: ' + str(root.player1.highscore) + 's'
-
-            Label:
                 id: start
                 center_y: self.parent.height*0.75 - dp(50)
                 text: "Get Ready"
@@ -61,7 +51,21 @@
                 y: self.parent.y
                 center_x: self.parent.center_x
 
+                Label:
+                    text: "Player 2"
+                    font_size: dp(20)
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    color: 0, 0, 0, 1
+
             PongPaddle:
                 id: player_bottom
                 y: self.parent.height-self.height
                 center_x: self.parent.center_x
+
+                Label:
+                    text: "Player 1"
+                    font_size: dp(20)
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    color: 0, 0, 0, 1
