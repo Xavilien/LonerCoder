@@ -9,7 +9,7 @@ from time import sleep
 class FaceDetection(Thread):
     cap = cv2.VideoCapture(0)
 
-    path = "/Users/xavilien/Desktop/School/1Secondary/2018/Non-Core/CEP/Hack&Roll/LonerCoder"
+    path = "/Users/advaypakhale/Documents/Projects/HacknRoll18"
 
     # This is needed since the notebook is stored in the object_detection folder.
     sys.path.append("..")

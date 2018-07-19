@@ -37,7 +37,7 @@ class PongPaddle(Widget):
             vx, vy = ball.velocity
             offset = (ball.center_x - self.center_x) / (self.height / 2)
             bounced = Vector(vx, -1 * vy)
-            vel = bounced * 1.05
+            vel = bounced * 1.3
             ball.velocity = vel.x + offset, vel.y
 
 
@@ -53,11 +53,9 @@ class PongBall(Widget):
 class PongGame(ScreenManager):
     ball = ObjectProperty(None)
     player1 = ObjectProperty(None)
-    ai_agent = ObjectProperty(None)
+    player2 = ObjectProperty(None)
     detector = None
 
-    expected_x = None
-    playerpos = 0
     jump = dp(20)  # Distance the paddles can move each clock cycle
 
     start_time = 0  # Allow us to calculate time elapsed since game started
@@ -93,8 +91,6 @@ class PongGame(ScreenManager):
         self.serve_ball()
         self.start_time = time()
         Clock.schedule_interval(self.update, 1.0 / 30.0)
-        Clock.schedule_interval(self.agent_movement, 1.0 / 30.0)
-        Clock.schedule_interval(self.player_movement, 1.0 / 30.0)
 
     '''
     The ball is not served perpendicular to the paddle so that the player cannot stall by not moving
@@ -109,7 +105,7 @@ class PongGame(ScreenManager):
     def bounce(self):
         # bounce of paddles
         self.player1.bounce_ball(self.ball)
-        self.ai_agent.bounce_ball(self.ball)
+        self.player2.bounce_ball(self.ball)
 
         # bounce ball off left or right
         if (self.ball.center_x-25 <= 0) or (self.ball.center_x+25 >= self.width):
@@ -141,45 +137,44 @@ class PongGame(ScreenManager):
     
     Paddles move a bit each clock cycle so that the paddles do not seem to 'jump'
     '''
-    def player_movement(self, dt):
+    def player1_movement(self):
+        # Update position of head by adding the offset to half the width
+        sensitivity = 2
+        offset = (0.5 - self.detector.x) * self.width  # How far the head is from the center
+        playerpos = self.width / 2 + offset * sensitivity
+
         center = self.player1.center_x
         width = self.ids.player_bottom.size[0]/2
 
-        if abs(center - self.playerpos) < width:
+        if abs(center - playerpos) < width:
             return None
-        elif self.playerpos > center and center < self.width - width:
+        elif playerpos > center and center < self.width - width:
             self.player1.center_x += self.jump
-        elif self.playerpos < center and center > width:
+        elif playerpos < center and center > width:
             self.player1.center_x -= self.jump
 
-    def agent_movement(self, dt):
-        self.predict()
+    def player2_movement(self):
+        delt = (self.height - self.ball.y) / self.ball.velocity_y
+        expected_x = (self.ball.velocity_x * delt) + self.ball.x
+        if expected_x > self.width:
+            expected_x = self.width
+        elif expected_x < self.x:
+            expected_x = 0
 
-        center = self.ai_agent.center_x
+        center = self.player2.center_x
         width = self.ids.player_top.size[0] / 2
 
-        if abs(center - self.expected_x) < width:
+        if abs(center - expected_x) < width:
             return None
-        elif center < self.expected_x:
-            self.ai_agent.center_x += self.jump
-        elif center > self.expected_x:
-            self.ai_agent.center_x -= self.jump
-
-    def predict(self):
-        delt = (self.height - self.ball.y) / self.ball.velocity_y
-        self.expected_x = (self.ball.velocity_x * delt) + self.ball.x
-        if self.expected_x > self.width:
-            self.expected_x = self.width
-        elif self.expected_x < self.x:
-            self.expected_x = 0
-
+        elif center < expected_x:
+            self.player2.center_x += self.jump
+        elif center > expected_x:
+            self.player2.center_x -= self.jump
+        
     def update(self, dt):
-        # Update position of head by adding the offset to half the width
-        sensitivity = 2
-        offset = (0.5-self.detector.x) * self.width  # How far the head is from the center
-        self.playerpos = self.width/2 + offset * sensitivity
-        # print(self.detector.x)
-
+        self.player1_movement()
+        self.player2_movement()
+        
         # Update the stopwatch with the time elapsed
         self.player1.time = round(time() - self.start_time, 1)
         try:
