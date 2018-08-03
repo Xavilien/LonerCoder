@@ -6,8 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/models/research" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/models/research/object_detection" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Multiplayer" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Multiplayer/Client" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Multiplayer/Server" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="3.6 Anaconda Work" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6 (FacePong)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TestRunnerService">

@@ -5,7 +5,7 @@ from threading import Thread
 
 class Client(Thread):
     s = None
-    host = '10.197.48.168'
+    host = '192.168.1.23'
     port = 8888
 
     def __init__(self):

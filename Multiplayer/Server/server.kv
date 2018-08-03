@@ -1,0 +1,71 @@
+#: kivy 1.0.10
+#: import datetime datetime
+
+<PongBall>:
+    size: dp(25), dp(25)
+
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<PongPaddle>:
+    size: dp(100), dp(12.5)
+    canvas:
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+<Label>:
+    font_size: dp(35)
+    center_x: self.parent.width*0.5
+
+<PongGame>:
+    ball: pong_ball
+    player1: player_top
+    player2: player_bottom
+
+    Screen
+
+    Screen:
+        name: 'play'
+
+        Widget:
+            canvas:
+                Rectangle:
+                    pos: 0, self.center_y-dp(2.5)
+                    size: self.width, dp(5)
+
+            Label:
+                id: start
+                center_y: self.parent.height*0.75 - dp(50)
+                text: "Get Ready"
+
+            PongBall:
+                id: pong_ball
+                center: self.parent.center
+                opacity: 0
+
+            PongPaddle:
+                id: player_top
+                y: self.parent.y
+                center_x: self.parent.center_x
+
+                Label:
+                    text: "Player 2"
+                    font_size: dp(20)
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    color: 0, 0, 0, 1
+
+            PongPaddle:
+                id: player_bottom
+                y: self.parent.height-self.height
+                center_x: self.parent.center_x
+
+                Label:
+                    text: "Player 1"
+                    font_size: dp(20)
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    color: 0, 0, 0, 1
