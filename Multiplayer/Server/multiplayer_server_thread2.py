@@ -8,15 +8,17 @@ class Connection(Thread):
         super(Connection, self).__init__()
         self.connection = connection
         self.address = address
+        self.x = None
+        self.data = None
 
     def run(self):
         while True:
             # Receiving from client
             try:
                 data = self.connection.recv(1024).decode('utf-8')
-                reply = 'OK...' + data
+                self.x = int(data)
 
-                self.connection.sendall(reply.encode('utf-8'))
+                self.connection.sendall(self.data.encode('utf-8'))
 
             except socket.error as msg:
                 print(msg)
@@ -31,11 +33,16 @@ class Server(Thread):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket_setup()
 
-        self.data = {"Ball": []}
+        self.data = {"Ball": [], "top_player": None, "bottom_player": None}  # Positions of ball and both players
+
+        self.winner = None  # If the game has a winner
+
+        self.top_player = None
+        self.bottom_player = None
 
     def socket_setup(self):
         host = ''  # Symbolic name meaning all available interfaces
-        port = 8888  # Arbitrary non-privileged port
+        port = 8000  # Arbitrary non-privileged port
 
         print('Socket created')
 
@@ -53,11 +60,38 @@ class Server(Thread):
 
     def run(self):
         while True:
-            connection, address = self.s.accept()
-            print(address[0] + ':' + str(address[1]))
-            thread = Connection(connection, address)
-            thread.start()
-            print("Thread started")
+            if self.top_player is None:
+                connection, address = self.s.accept()
+                print(address[0] + ':' + str(address[1]))
+                self.top_player = Connection(connection, address)
+
+                data = self.top_player.connection.recv(1024).decode('utf-8')
+                self.top_player.x = int(data)
+                self.data["top_player"] = self.top_player.x
+                self.top_player.connection.sendall("top_player".encode('utf-8'))
+
+                self.top_player.start()
+                print("Top started")
+
+            elif self.bottom_player is None:
+                connection, address = self.s.accept()
+                print(address[0] + ':' + str(address[1]))
+                self.bottom_player = Connection(connection, address)
+
+                data = self.bottom_player.connection.recv(1024).decode('utf-8')
+                self.bottom_player.x = int(data)
+                self.data["bottom_player"] = self.bottom_player.x
+                self.bottom_player.connection.sendall("bottom_player".encode('utf-8'))
+
+                self.bottom_player.start()
+                print("Bottom started")
+
+            else:
+                self.data["top_player"] = self.top_player.x
+                self.data["bottom_player"] = self.bottom_player.x
+
+                self.top_player.data = [self.data["Ball"], self.data["bottom_player"]]
+                self.bottom_player.data = [self.data["Ball"], self.data["top_player"]]
 
 
 if __name__ == '__main__':

@@ -5,12 +5,16 @@ from threading import Thread
 
 class Client(Thread):
     s = None
-    host = '192.168.1.23'
+    host = '10.197.48.168'
     port = 8888
 
-    def __init__(self):
+    def __init__(self, x):
         super(Client, self).__init__()
         self.create_socket()
+
+        self.x = x
+        self.data = []
+        self.player = None
 
     def create_socket(self):
         # create an INET, STREAMing socket
@@ -27,13 +31,15 @@ class Client(Thread):
         print('Socket Connected to ' + self.host + ' on ip ' + self.host)
 
     def run(self):
-        while True:
-            # Send some data to remote server
-            message = input()
+        self.s.sendall(self.x.encode('utf-8'))
+        reply = self.s.recv(4096).decode('utf-8')
+        self.player = reply
+
+        while True: # Send some data t
 
             try:
                 # Set the whole string
-                self.s.sendall(message.encode('utf-8'))
+                self.s.sendall(self.x.encode('utf-8'))
             except socket.error:
                 # Send failed
                 print('Send failed')
@@ -41,7 +47,7 @@ class Client(Thread):
 
             # Now receive data
             reply = self.s.recv(4096).decode('utf-8')
-
+            self.data = reply
             print(reply)
 
 
