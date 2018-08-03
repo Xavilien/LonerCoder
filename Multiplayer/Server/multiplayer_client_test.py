@@ -32,7 +32,6 @@ class Client(Thread):
 
     def run(self):
         while True:
-            print("loop running")
             try:
                 # Set the whole string
                 self.s.sendall(str(self.x).encode('utf-8'))

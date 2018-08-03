@@ -119,8 +119,8 @@ class PongGame(ScreenManager):
         self.opponent.center_x = self.client.data[1]
 
     def ball_movement(self):
-        self.ball.center_x = self.client.data[0][0]
-        self.ball.center_y = self.client.data[0][1]
+        self.ball.x = self.client.data[0][0]
+        self.ball.y = self.client.data[0][1]
         
     def update(self, dt):
         self.player_movement()
