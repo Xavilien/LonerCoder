@@ -37,16 +37,6 @@
                     size: self.width, dp(5)
 
             Label:
-                id: stopwatch
-                top: self.parent.top - dp(10)
-                text: str(root.player1.time) + 's'
-
-            Label:
-                id: highscore
-                top: self.parent.top - dp(50)
-                text: 'Highscore: ' + str(root.player1.highscore) + 's'
-
-            Label:
                 id: start
                 center_y: self.parent.height*0.75 - dp(50)
                 text: "Get Ready"

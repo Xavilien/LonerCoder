@@ -5,8 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Multiplayer/multiplayer.kv" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/multiplayer.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Multiplayer/multiplayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/multiplayer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplayer/multiplayer_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/multiplayer_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplayer/tfimgcontroller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/tfimgcontroller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Multiplayer/multiplayer_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Multiplayer/multiplayer_server.py" beforeDir="false" />
     </list>
     <ignored path="App/build/" />
     <ignored path="App/dist/" />
@@ -23,7 +23,7 @@
     <SUITE FILE_PATH="coverage/HacknRoll18$ai.coverage" NAME="ai Coverage Results" MODIFIED="1517133763416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/research/object_detection" />
     <SUITE FILE_PATH="coverage/HacknRoll18$multiplayer_client.coverage" NAME="multiplayer_client Coverage Results" MODIFIED="1519406193106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Multiplayer" />
     <SUITE FILE_PATH="coverage/HacknRoll18$tfimgcontroller.coverage" NAME="tfimgcontroller Coverage Results" MODIFIED="1517106783567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/research/object_detection" />
-    <SUITE FILE_PATH="coverage/HacknRoll18$multiplayer.coverage" NAME="multiplayer Coverage Results" MODIFIED="1531917251835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Multiplayer" />
+    <SUITE FILE_PATH="coverage/HacknRoll18$multiplayer.coverage" NAME="multiplayer Coverage Results" MODIFIED="1531988572888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Multiplayer" />
     <SUITE FILE_PATH="coverage/HacknRoll18$ai2.coverage" NAME="ai2 Coverage Results" MODIFIED="1519446515143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Old" />
     <SUITE FILE_PATH="coverage/HacknRoll18$multiplayer_client__1_.coverage" NAME="multiplayer_client (1) Coverage Results" MODIFIED="1517719013054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Multiplayer" />
     <SUITE FILE_PATH="coverage/HacknRoll18$pong_server.coverage" NAME="pong_server Coverage Results" MODIFIED="1517113762271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/research/object_detection" />
@@ -33,28 +33,29 @@
     <session id="991277669">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="kv" value="8" />
-          <entry key="py" value="25" />
+          <entry key="kv" value="10" />
+          <entry key="py" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Kivy" value="8" />
-          <entry key="Python" value="25" />
+          <entry key="Kivy" value="10" />
+          <entry key="Python" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="kv" value="7" />
-          <entry key="py" value="645" />
+          <entry key="kv" value="17" />
+          <entry key="py" value="927" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Kivy" value="7" />
-          <entry key="Python" value="645" />
+          <entry key="Kivy" value="17" />
+          <entry key="Python" value="927" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.lifecycle.project" />
     </session>
   </component>
   <component name="FileEditorManager">
@@ -62,11 +63,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Multiplayer/multiplayer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="163" column="38" lean-forward="true" selection-start-line="163" selection-start-column="38" selection-end-line="163" selection-end-column="38" />
+            <state relative-caret-position="162">
+              <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
               <folding>
-                <element signature="e#0#13#0" expanded="true" />
-                <marker date="1531917409102" expanded="true" signature="5594:5608" ph="..." />
+                <marker date="1533281433874" expanded="true" signature="743:755" ph="..." />
+                <marker date="1533281433874" expanded="true" signature="778:790" ph="..." />
+                <marker date="1533281433874" expanded="true" signature="2639:2658" ph="..." />
+                <marker date="1533281433874" expanded="true" signature="2682:2709" ph="..." />
               </folding>
             </state>
           </provider>
@@ -149,12 +152,12 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Old/ai2.py" />
         <option value="$PROJECT_DIR$/Multiplayer/tfimgcontroller.py" />
-        <option value="$PROJECT_DIR$/Multiplayer/multiplayer.kv" />
-        <option value="$PROJECT_DIR$/Multiplayer/multiplayer.py" />
         <option value="$PROJECT_DIR$/ClientServerModel/server.kv" />
         <option value="$PROJECT_DIR$/ClientServerModel/tfimgcontroller.py" />
         <option value="$PROJECT_DIR$/Multiplayer/multiplayer_server.py" />
         <option value="$PROJECT_DIR$/ClientServerModel/server.py" />
+        <option value="$PROJECT_DIR$/Multiplayer/multiplayer.kv" />
+        <option value="$PROJECT_DIR$/Multiplayer/multiplayer.py" />
       </list>
     </option>
   </component>
@@ -164,10 +167,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1280" />
-    <option name="height" value="777" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -210,7 +212,7 @@
             <path>
               <item name="HacknRoll18" type="b2602c69:ProjectViewProjectNode" />
               <item name="HacknRoll18" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="Multiplayer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="HacknRoll18" type="b2602c69:ProjectViewProjectNode" />
@@ -421,13 +423,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1517018996159</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Test">
-      <created>1517075210466</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1517075210466</updated>
     </task>
     <task id="LOCAL-00026" summary="Test">
       <created>1517075270994</created>
@@ -765,7 +760,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531831021963</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Updated">
+      <created>1531985075964</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1531985075964</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -778,25 +780,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.28540772" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28540772" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4822294" weight="0.3686747" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4822294" visible="true" weight="0.3686747" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="3" weight="0.5" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.398827" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.48585287" weight="0.29178885" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.48585287" weight="0.29156625" />
       <window_info anchor="bottom" id="TODO" order="8" weight="0.32991204" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5141471" side_tool="true" weight="0.29178885" />
       <window_info anchor="bottom" id="Messages" order="10" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.47738287" weight="0.31671554" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3240469" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32289156" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -893,7 +895,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Updated" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/models/research/object_detection/ai2client.py" />
     <entry file="file://$PROJECT_DIR$/models/research/object_detection/ai2server.py" />
     <entry file="file://$PROJECT_DIR$/models/research/object_detection/multiplayer.kv" />
     <entry file="file://$PROJECT_DIR$/models/research/object_detection/multiplayer.py" />
@@ -911,13 +912,6 @@
     <entry file="file://$PROJECT_DIR$/models/research/object_detection/tfimgcontroller.py" />
     <entry file="file://$PROJECT_DIR$/Old/ai.kv">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Old/ai.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$USER_HOME$/.virtualenvs/Hackathon/lib/python3.6/site-packages/tensorflow/__init__.py" />
     <entry file="file://$PROJECT_DIR$/p.py" />
@@ -970,29 +964,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Old/ai2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Old/ai2.kv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Old/tfimgcontroller.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Multiplayer/request.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1012,23 +983,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Multiplayer/multiplayer.kv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Multiplayer/multiplayer_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ClientServerModel/tfimgcontroller.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
@@ -1043,6 +997,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ClientServerModel/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2511">
+          <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Old/ai2.kv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Old/tfimgcontroller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1836">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Multiplayer/multiplayer_server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -1053,20 +1027,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ClientServerModel/server.py">
+    <entry file="file://$PROJECT_DIR$/Multiplayer/multiplayer_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2511">
-          <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+        <state relative-caret-position="234">
+          <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Old/pong_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Old/ai.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1596">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Old/ai2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-875">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Multiplayer/multiplayer.kv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="45" column="42" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Multiplayer/multiplayer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="163" column="38" lean-forward="true" selection-start-line="163" selection-start-column="38" selection-end-line="163" selection-end-column="38" />
+        <state relative-caret-position="162">
+          <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <marker date="1531917409102" expanded="true" signature="5594:5608" ph="..." />
+            <marker date="1533281433874" expanded="true" signature="743:755" ph="..." />
+            <marker date="1533281433874" expanded="true" signature="778:790" ph="..." />
+            <marker date="1533281433874" expanded="true" signature="2639:2658" ph="..." />
+            <marker date="1533281433874" expanded="true" signature="2682:2709" ph="..." />
           </folding>
         </state>
       </provider>
