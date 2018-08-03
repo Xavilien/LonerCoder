@@ -82,7 +82,7 @@ class PongGame(ScreenManager):
             self.player = self.bottom_player  # self.top_player, self.bottom_player
             self.opponent = self.top_player  # self.bottom_player, self.top_player
 
-        while self.client.data is None:
+        while self.client.data == []:
             pass
 
         if self.control.is_set():

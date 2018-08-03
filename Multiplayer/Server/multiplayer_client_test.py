@@ -6,7 +6,7 @@ from threading import Thread
 class Client(Thread):
     s = None
     host = '10.197.48.168'
-    port = 8000
+    port = 8888
 
     def __init__(self, x):
         super(Client, self).__init__()

@@ -19,7 +19,7 @@ class Connection(Thread):
                 x = json.loads(self.connection.recv(1024))
                 self.x = float(x)
 
-                print(self.x)
+                # print(self.x)
 
                 self.connection.sendall(str(self.data).encode('utf-8'))
 
@@ -34,9 +34,10 @@ class Server(Thread):
         super(Server, self).__init__()
 
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.socket_setup()
 
-        self.data = {"Ball": [], "top_player": None, "bottom_player": None}  # Positions of ball and both players
+        self.data = {"Ball": [], "top_player": -1, "bottom_player": -1}  # Positions of ball and both players
 
         self.winner = None  # If the game has a winner
 
@@ -45,7 +46,7 @@ class Server(Thread):
 
     def socket_setup(self):
         host = ''  # Symbolic name meaning all available interfaces
-        port = 8000  # Arbitrary non-privileged port
+        port = 8888  # Arbitrary non-privileged port
 
         print('Socket created')
 
