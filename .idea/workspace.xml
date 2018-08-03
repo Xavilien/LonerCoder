@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="43a9ba25-d77f-43c5-be8f-04be60848aed" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplayer/Client/multiplayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Client/multiplayer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_client_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_client_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread2.py" afterDir="false" />
+    <list default="true" id="43a9ba25-d77f-43c5-be8f-04be60848aed" name="Default" comment="Updated">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
     </list>
     <ignored path="App/build/" />
     <ignored path="App/dist/" />
@@ -31,20 +28,20 @@
     <session id="991277669">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="kv" value="2" />
-          <entry key="py" value="13" />
+          <entry key="kv" value="3" />
+          <entry key="py" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Kivy" value="2" />
-          <entry key="Python" value="13" />
+          <entry key="Kivy" value="3" />
+          <entry key="Python" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.open.time.0" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -66,7 +63,7 @@
       <file leaf-file-name="multiplayer_server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="692">
+            <state relative-caret-position="5">
               <caret line="128" column="73" selection-start-line="128" selection-start-column="73" selection-end-line="128" selection-end-column="73" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -90,7 +87,7 @@
       <file leaf-file-name="server.kv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Multiplayer/Server/server.kv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
+            <state relative-caret-position="675">
               <caret line="45" column="29" lean-forward="true" selection-start-line="45" selection-end-line="46" />
             </state>
           </provider>
@@ -123,7 +120,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="advay" />
+        <entry key="$PROJECT_DIR$" value="xavier" />
       </map>
     </option>
   </component>
@@ -187,9 +184,10 @@
       <path value="$PROJECT_DIR$/Old/Files/research/syntaxnet/dragnn/viz/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="800" />
+    <option name="height" value="777" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -216,6 +214,9 @@
   <component name="ProjectLevelVcsManager">
     <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="1" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -278,7 +279,6 @@
         <option name="myCustomStartScript" value="" />
         <option name="myUseModuleSdk" value="true" />
         <option name="myModuleName" value="HacknRoll18" />
-        <option name="myAddSourceRoots" value="true" />
       </console-settings>
     </option>
     <option name="myShowVariablesByDefault" value="false" />
@@ -290,6 +290,121 @@
       <recent name="$PROJECT_DIR$/Multiplayer" />
       <recent name="$PROJECT_DIR$/Face Detection" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="" />
+          <PATH vcs="Git" revision="" />
+          <PATH vcs="Git" revision="" />
+          <PATH vcs="Git" revision="" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="" />
+          <PATH vcs="Git" revision="" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -303,7 +418,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.multiplayer_server_thread2">
+  <component name="RunManager" selected="Python.multiplayer">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="HacknRoll18" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -350,12 +465,31 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Multiplayer/Client" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Multiplayer" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Multiplayer/Client/multiplayer.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Multiplayer/multiplayer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="multiplayer_client" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="HacknRoll18" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Multiplayer" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Multiplayer/multiplayer_client.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -388,50 +522,31 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Multiplayer/Server" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Multiplayer" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="multiplayer_server_thread2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="HacknRoll18" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Multiplayer/Server" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Multiplayer/multiplayer_server.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
     <list>
-      <item itemvalue="Python.multiplayer_server" />
-      <item itemvalue="Python.ai2" />
-      <item itemvalue="Python.multiplayer_server_thread2" />
-      <item itemvalue="Python.multiplayer_client_test" />
       <item itemvalue="Python.multiplayer" />
+      <item itemvalue="Python.multiplayer_server" />
+      <item itemvalue="Python.multiplayer_client" />
+      <item itemvalue="Python.ai2" />
+      <item itemvalue="Python.multiplayer_client_test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.multiplayer_server_thread2" />
+        <item itemvalue="Python.ai2" />
+        <item itemvalue="Python.multiplayer_client" />
         <item itemvalue="Python.multiplayer" />
         <item itemvalue="Python.multiplayer_client_test" />
         <item itemvalue="Python.multiplayer_server" />
-        <item itemvalue="Python.ai2" />
       </list>
     </recent_temporary>
   </component>
@@ -445,6 +560,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1517018996159</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Test">
+      <created>1517075210466</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1517075210466</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Test">
+      <created>1517075270994</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1517075270994</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Test">
+      <created>1517075703889</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1517075703889</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Test">
+      <created>1517099971854</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1517099971854</updated>
     </task>
     <task id="LOCAL-00029" summary="Test">
       <created>1517104752793</created>
@@ -755,41 +898,13 @@
       <updated>1519801284546</updated>
     </task>
     <task id="LOCAL-00073" summary="Updated">
-      <created>1533285803837</created>
+      <created>1533284456106</created>
       <option name="number" value="00073" />
       <option name="presentableId" value="LOCAL-00073" />
       <option name="project" value="LOCAL" />
-      <updated>1533285803837</updated>
+      <updated>1533284456106</updated>
     </task>
-    <task id="LOCAL-00074" summary="Updated">
-      <created>1533285835423</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1533285835423</updated>
-    </task>
-    <task id="LOCAL-00075" summary="Updated">
-      <created>1533285853459</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1533285853459</updated>
-    </task>
-    <task id="LOCAL-00076" summary="Updated">
-      <created>1533287526376</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1533287526377</updated>
-    </task>
-    <task id="LOCAL-00077" summary="Updated">
-      <created>1533288534298</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1533288534298</updated>
-    </task>
-    <option name="localTasksCounter" value="78" />
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -803,16 +918,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="8" weight="0.32991204" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5169628" side_tool="true" weight="0.29852942" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.52100164" side_tool="true" weight="0.31617647" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.47738287" weight="0.31617647" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.4789984" visible="true" weight="0.31617647" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32352942" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48303714" visible="true" weight="0.29852942" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48303714" weight="0.29852942" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.48585287" weight="0.29117647" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26171243" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26171243" />
       <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" />
@@ -820,16 +934,55 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.398827" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26108727" />
+      <window_info id="Structure" order="1" weight="0.24964234" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="8" weight="0.32991204" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.47738287" weight="0.31671554" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48354793" weight="0.3686747" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3240469" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.398827" />
       <window_info anchor="right" x="0" y="0" width="270" height="577" id="Documentation" order="5" weight="0.3296875" />
-      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Messages" order="10" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5164521" side_tool="true" weight="0.3686747" />
+      <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="4" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.48585287" weight="0.29178885" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="3" weight="0.5" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13247173" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="8" weight="0.32991204" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4822294" weight="0.36950147" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.398827" />
+      <window_info anchor="right" x="0" y="0" width="270" height="577" id="Documentation" order="5" weight="0.3296875" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.48585287" weight="0.29178885" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5141471" side_tool="true" weight="0.29178885" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="3" weight="0.5" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.47738287" weight="0.31671554" />
+      <window_info anchor="right" id="SciView" order="4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Messages" order="10" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3240469" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -891,11 +1044,6 @@
     <MESSAGE value="Files required for tensorflow" />
     <MESSAGE value="Updated" />
     <option name="LAST_COMMIT_MESSAGE" value="Updated" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="17" />
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/models/research/object_detection/ai2server.py" />
@@ -964,11 +1112,7 @@
     <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer_client.py" />
     <entry file="file://$PROJECT_DIR$/Old/Client/multiplayer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1543">
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-1543" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Multiplayer/Client/tfimgcontroller.py">
@@ -990,20 +1134,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer.py">
+    <entry file="file://$PROJECT_DIR$/Multiplayer/Server/server.kv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="81" column="43" lean-forward="true" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="675">
+          <caret line="45" column="29" lean-forward="true" selection-start-line="45" selection-end-line="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Multiplayer/Server/server.kv">
+    <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="45" column="29" lean-forward="true" selection-start-line="45" selection-end-line="46" />
+        <state relative-caret-position="5">
+          <caret line="128" column="73" selection-start-line="128" selection-start-column="73" selection-end-line="128" selection-end-column="73" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1017,10 +1161,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py">
+    <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="128" column="73" selection-start-line="128" selection-start-column="73" selection-end-line="128" selection-end-column="73" />
+        <state relative-caret-position="162">
+          <caret line="69" column="57" lean-forward="true" selection-start-line="69" selection-start-column="57" selection-end-line="69" selection-end-column="57" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
