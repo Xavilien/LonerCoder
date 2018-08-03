@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="43a9ba25-d77f-43c5-be8f-04be60848aed" name="Default" comment="Updated">
-      <change beforePath="$PROJECT_DIR$/.idea/HacknRoll18.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HacknRoll18.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="43a9ba25-d77f-43c5-be8f-04be60848aed" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_client_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_client_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Multiplayer/Server/server.kv" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Server/server.kv" afterDir="false" />
     </list>
     <ignored path="App/build/" />
@@ -35,8 +31,20 @@
       <file leaf-file-name="multiplayer_server.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-13">
-              <caret line="79" column="16" lean-forward="true" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+            <state relative-caret-position="735">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="multiplayer.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1418">
+              <caret line="174" column="23" lean-forward="true" selection-start-line="174" selection-start-column="23" selection-end-line="174" selection-end-column="23" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -47,7 +55,7 @@
       <file leaf-file-name="multiplayer_server_thread2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="270">
               <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -57,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multiplayer_client_test.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="multiplayer_client_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_client_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="564">
-              <caret line="50" column="24" lean-forward="true" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="24" />
+            <state relative-caret-position="309">
+              <caret line="33" column="46" lean-forward="true" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
                 <element signature="e#291#696#0" />
@@ -73,8 +81,8 @@
       <file leaf-file-name="server.kv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Multiplayer/Server/server.kv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="895">
-              <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
+            <state relative-caret-position="280">
+              <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -157,10 +165,10 @@
         <option value="$PROJECT_DIR$/Multiplayer/multiplayer_server.py" />
         <option value="$PROJECT_DIR$/Multiplayer/Client/multiplayer.py" />
         <option value="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread.py" />
-        <option value="$PROJECT_DIR$/Multiplayer/Server/server.kv" />
-        <option value="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py" />
         <option value="$PROJECT_DIR$/Multiplayer/Server/multiplayer_client_test.py" />
         <option value="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread2.py" />
+        <option value="$PROJECT_DIR$/Multiplayer/Server/server.kv" />
+        <option value="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py" />
       </list>
     </option>
   </component>
@@ -407,13 +415,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1517018996159</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Test">
-      <created>1517074172658</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1517074172658</updated>
     </task>
     <task id="LOCAL-00025" summary="Test">
       <created>1517075210466</created>
@@ -751,7 +752,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519801284546</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Updated">
+      <created>1533284452218</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1533284452221</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -772,9 +780,9 @@
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.47738287" weight="0.31671554" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32352942" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4822294" visible="true" weight="0.29852942" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4822294" visible="true" weight="0.29852942" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.48585287" weight="0.29117647" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49791667" visible="true" weight="0.22940226" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49791667" visible="true" weight="0.22940226" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" />
@@ -1021,36 +1029,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer.py">
+    <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_client_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2025">
-          <caret line="174" column="23" lean-forward="true" selection-start-line="174" selection-start-column="23" selection-end-line="174" selection-end-column="23" />
+        <state relative-caret-position="309">
+          <caret line="33" column="46" lean-forward="true" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Multiplayer/Server/server.kv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="895">
-          <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="79" column="16" lean-forward="true" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#291#696#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
+        <state relative-caret-position="270">
           <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
@@ -1059,13 +1051,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_client_test.py">
+    <entry file="file://$PROJECT_DIR$/Multiplayer/Server/server.kv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="50" column="24" lean-forward="true" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="24" />
+        <state relative-caret-position="280">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
-            <element signature="e#291#696#0" />
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1418">
+          <caret line="174" column="23" lean-forward="true" selection-start-line="174" selection-start-column="23" selection-end-line="174" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>

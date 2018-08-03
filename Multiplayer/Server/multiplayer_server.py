@@ -51,8 +51,8 @@ class PongBall(Widget):
 
 class PongGame(ScreenManager):
     ball = ObjectProperty(None)
-    player1 = ObjectProperty(None)
-    player2 = ObjectProperty(None)
+    top_player = ObjectProperty(None)
+    bottom_player = ObjectProperty(None)
 
     jump = dp(20)  # Distance the paddles can move each clock cycle
 
