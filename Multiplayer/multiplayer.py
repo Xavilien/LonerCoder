@@ -35,8 +35,8 @@ class PongBall(Widget):
 
 class PongGame(ScreenManager):
     ball = ObjectProperty(None)
-    player1 = ObjectProperty(None)
-    player2 = ObjectProperty(None)
+    top_player = ObjectProperty(None)
+    bottom_player = ObjectProperty(None)
     detector = None
     angle = 0
 
@@ -50,6 +50,8 @@ class PongGame(ScreenManager):
         super(PongGame, self).__init__()
 
         self.current = 'play'
+        self.player = None
+        self.opponent = None
 
         self.detector = FaceDetection(self.control)
         self.detector.start()
@@ -63,6 +65,10 @@ class PongGame(ScreenManager):
     def wait(self):
         while self.detector.x is None and self.control.is_set():
             pass
+        # START CLIENT
+        # FIND OUT WHICH PLAYER --> assigning player, opponent = top_player/bottom_player
+        self.player = None # self.top_player, self.bottom_player
+        self.opponent = None # self.bottom_player, self.top_player
         if self.control.is_set():
             self.ball.opacity = 1
             self.ids.start.text = 'Starting'
@@ -73,33 +79,33 @@ class PongGame(ScreenManager):
         Clock.schedule_interval(self.update, 1.0 / 30.0)
 
     def reset(self):
-        self.player1.center_x = self.width/2
+        self.player.center_x = self.width/2
 
-    def player1_movement(self):
+    def player_movement(self):
         # Update position of head by adding the offset to half the width
         sensitivity = 2
         offset = (0.5 - self.detector.x) * self.width  # How far the head is from the center
         playerpos = self.width / 2 + offset * sensitivity
 
-        center = self.player1.center_x
+        center = self.player.center_x
         width = self.ids.player_bottom.size[0]/2
 
         if abs(center - playerpos) < width:
             return None
         elif playerpos > center and center < self.width - width:
-            self.player1.center_x += self.jump
+            self.player.center_x += self.jump
         elif playerpos < center and center > width:
-            self.player1.center_x -= self.jump
+            self.player.center_x -= self.jump
 
-    def player2_movement(self):
+    def opponent_movement(self):
         pass
 
     def ball_movement(self):
         pass
         
     def update(self, dt):
-        self.player1_movement()
-        self.player2_movement()
+        self.player_movement()
+        self.opponent_movement()
         self.ball_movement()
 
 
