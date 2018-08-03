@@ -76,8 +76,9 @@ class PongGame(ScreenManager):
     '''
 
     def wait(self):
-        # while self.server.data["top_player"] is None or self.server.data["bottom_player"] is None:
-        #   pass
+        while self.server.data["top_player"] is None or self.server.data["bottom_player"] is None:
+            pass
+
         if self.control.is_set():
             self.ball.opacity = 1
             self.ids.start.text = 'Starting'

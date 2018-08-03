@@ -14,6 +14,8 @@ from kivy.uix.screenmanager import ScreenManager
 from kivy.lang.builder import Builder
 from kivy.metrics import dp
 
+from Server.multiplayer_client_test import Client
+
 from kivy.config import Config
 Config.set('graphics', 'width', '1920')
 Config.set('graphics', 'height', '800')
@@ -52,6 +54,7 @@ class PongGame(ScreenManager):
         self.current = 'play'
         self.player = None
         self.opponent = None
+        self.client = None
 
         self.detector = FaceDetection(self.control)
         self.detector.start()
@@ -67,8 +70,21 @@ class PongGame(ScreenManager):
             pass
         # START CLIENT
         # FIND OUT WHICH PLAYER --> assigning player, opponent = top_player/bottom_player
-        self.player = None # self.top_player, self.bottom_player
-        self.opponent = None # self.bottom_player, self.top_player
+        self.client = Client(self.top_player.center_x)
+        self.client.start()
+        while self.client.player is None:
+            pass
+
+        if self.client.player == "top_player":
+            self.player = self.top_player  # self.top_player, self.bottom_player
+            self.opponent = self.bottom_player  # self.bottom_player, self.top_player
+        elif self.client.player == "bottom_player":
+            self.player = self.bottom_player  # self.top_player, self.bottom_player
+            self.opponent = self.top_player  # self.bottom_player, self.top_player
+
+        while self.client.data is None:
+            pass
+
         if self.control.is_set():
             self.ball.opacity = 1
             self.ids.start.text = 'Starting'
