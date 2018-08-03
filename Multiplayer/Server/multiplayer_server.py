@@ -11,7 +11,7 @@ from kivy.uix.screenmanager import ScreenManager
 from kivy.lang.builder import Builder
 from kivy.metrics import dp
 
-from multiplayer_server_thread import *
+from multiplayer_server_thread2 import *
 
 from kivy.config import Config
 
@@ -51,8 +51,8 @@ class PongBall(Widget):
 
 class PongGame(ScreenManager):
     ball = ObjectProperty(None)
-    player1 = ObjectProperty(None)
-    player2 = ObjectProperty(None)
+    top_player = ObjectProperty(None)
+    bottom_player = ObjectProperty(None)
 
     jump = dp(20)  # Distance the paddles can move each clock cycle
 
@@ -65,16 +65,19 @@ class PongGame(ScreenManager):
 
         self.current = 'play'
 
+        self.server = Server()
+        self.server.start()
+
         self.waiting = threading.Thread(target=self.wait)
         self.waiting.start()
 
     '''
-    Wait for the facedetection to be loaded so that the game doesn't start when it is not ready
+    Wait for both players to be loaded so that the game doesn't start when it is not ready
     '''
 
     def wait(self):
-        while self.control.is_set():
-            pass
+        # while self.server.data["top_player"] is None or self.server.data["bottom_player"] is None:
+        #   pass
         if self.control.is_set():
             self.ball.opacity = 1
             self.ids.start.text = 'Starting'
@@ -107,28 +110,25 @@ class PongGame(ScreenManager):
     def check_win(self):
         # went of to a side to end game?
         if self.ball.y < self.y:
-            return
+            print("Bottom player has won")
+            self.server.winner = "bottom_player"
 
         # Since it is very unlikely for the player to win, so the game crashes if that happens
         if self.ball.y > self.height:
-            return
+            print("Top player has won")
+            self.server.winner = "top_player"
 
     '''
     The positions of the paddles of each player are taken from the server thread in multiplayer_server_thread.py and are
     updated every clock cycle
     '''
 
-    def player1_movement(self):
-        return
-
-    def player2_movement(self):
-        return
-
     def update(self, dt):
-        self.player1_movement()
-        self.player2_movement()
-
         self.ball.move()
+        self.server.data["ball"] = [self.ball.x, self.ball.y]
+
+        #self.top_player.center_x = self.server.data["top_player"]
+        #self.bottom_player.center_x = self.server.data["bottom_player"]
 
         self.bounce()
 
