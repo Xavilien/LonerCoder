@@ -19,6 +19,8 @@ class Connection(Thread):
                 x = json.loads(self.connection.recv(1024))
                 self.x = float(x)
 
+                print(self.x)
+
                 self.connection.sendall(str(self.data).encode('utf-8'))
 
             except socket.error as msg:
@@ -73,6 +75,9 @@ class Server(Thread):
                 self.data["top_player"] = self.top_player.x
                 self.top_player.connection.sendall("top_player".encode('utf-8'))
 
+                self.top_player.data = [self.data["Ball"], self.data["bottom_player"]]
+                self.top_player.start()
+
                 print("Top started")
 
             elif self.bottom_player is None:
@@ -88,11 +93,9 @@ class Server(Thread):
                 self.bottom_player.connection.sendall("bottom_player".encode('utf-8'))
 
                 # Set the data of both connection threads so thaht we can initialise the connection loop
-                self.top_player.data = [self.data["Ball"], self.data["bottom_player"]]
                 self.bottom_player.data = [self.data["Ball"], self.data["top_player"]]
-
-                self.top_player.start()
                 self.bottom_player.start()
+
                 print("Bottom started")
 
             else:

@@ -126,10 +126,10 @@ class PongGame(ScreenManager):
 
     def update(self, dt):
         self.ball.move()
-        self.server.data["ball"] = [self.ball.x, self.ball.y]
+        self.server.data["ball"] = [self.ball.center_x, self.ball.center_y]
 
-        #self.top_player.center_x = self.server.data["top_player"]
-        #self.bottom_player.center_x = self.server.data["bottom_player"]
+        self.top_player.center_x = self.server.data["top_player"]
+        self.bottom_player.center_x = self.server.data["bottom_player"]
 
         self.bounce()
 
