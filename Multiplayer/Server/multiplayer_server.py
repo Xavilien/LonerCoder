@@ -76,8 +76,12 @@ class PongGame(ScreenManager):
     '''
 
     def wait(self):
-        while self.server.data["top_player"] is None or self.server.data["bottom_player"] is None:
+        self.server.data["Ball"] = [self.ball.x, self.ball.y]
+
+        while self.server.data["top_player"] is -1 or self.server.data["bottom_player"] is -1:
             pass
+
+        print("Ready")
 
         if self.control.is_set():
             self.ball.opacity = 1
@@ -101,8 +105,8 @@ class PongGame(ScreenManager):
     '''
     def bounce(self):
         # bounce of paddles
-        self.player1.bounce_ball(self.ball)
-        self.player2.bounce_ball(self.ball)
+        self.top_player.bounce_ball(self.ball)
+        self.bottom_player.bounce_ball(self.ball)
 
         # bounce ball off left or right
         if (self.ball.center_x - 25 <= 0) or (self.ball.center_x + 25 >= self.width):
@@ -111,13 +115,15 @@ class PongGame(ScreenManager):
     def check_win(self):
         # went of to a side to end game?
         if self.ball.y < self.y:
-            print("Bottom player has won")
-            self.server.winner = "bottom_player"
+            # print("Top player has won")
+            self.server.winner = "top_player"
+            self.serve_ball()
 
         # Since it is very unlikely for the player to win, so the game crashes if that happens
         if self.ball.y > self.height:
-            print("Top player has won")
-            self.server.winner = "top_player"
+            # print("Bottom player has won")
+            self.server.winner = "bottom_player"
+            self.serve_ball()
 
     '''
     The positions of the paddles of each player are taken from the server thread in multiplayer_server_thread.py and are
@@ -126,7 +132,7 @@ class PongGame(ScreenManager):
 
     def update(self, dt):
         self.ball.move()
-        self.server.data["ball"] = [self.ball.center_x, self.ball.center_y]
+        self.server.data["Ball"] = [self.ball.x, self.ball.y]
 
         self.top_player.center_x = self.server.data["top_player"]
         self.bottom_player.center_x = self.server.data["bottom_player"]

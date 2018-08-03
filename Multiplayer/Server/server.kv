@@ -47,25 +47,12 @@
                 opacity: 0
 
             PongPaddle:
-                id: player_top
+                id: player_bottom
                 y: self.parent.y
                 center_x: self.parent.center_x
 
-                Label:
-                    text: "Player 1"
-                    font_size: dp(20)
-                    center_x: self.parent.center_x
-                    center_y: self.parent.center_y
-                    color: 0, 0, 0, 1
-
             PongPaddle:
-                id: player_bottom
+                id: player_top
                 y: self.parent.height-self.height
                 center_x: self.parent.center_x
 
-                Label:
-                    text: "Player 2"
-                    font_size: dp(20)
-                    center_x: self.parent.center_x
-                    center_y: self.parent.center_y
-                    color: 0, 0, 0, 1
