@@ -5,6 +5,8 @@ from tfimgcontroller import FaceDetection
 import sys
 import math
 
+from Server.multiplayer_client_test import Client
+
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.properties import NumericProperty, ReferenceListProperty, Property, ObjectProperty
@@ -38,9 +40,6 @@ class PongGame(ScreenManager):
     top_player = ObjectProperty(None)
     bottom_player = ObjectProperty(None)
     detector = None
-    angle = 0
-
-    jump = dp(20)  # Distance the paddles can move each clock cycle
 
     # Allow us to close thread before exiting the app
     control = threading.Event()
@@ -52,6 +51,7 @@ class PongGame(ScreenManager):
         self.current = 'play'
         self.player = None
         self.opponent = None
+        self.client = None
 
         self.detector = FaceDetection(self.control)
         self.detector.start()
@@ -65,10 +65,20 @@ class PongGame(ScreenManager):
     def wait(self):
         while self.detector.x is None and self.control.is_set():
             pass
-        # START CLIENT
-        # FIND OUT WHICH PLAYER --> assigning player, opponent = top_player/bottom_player
-        self.player = None # self.top_player, self.bottom_player
-        self.opponent = None # self.bottom_player, self.top_player
+
+        self.client = Client(self.top_player.center_x)
+        self.client.start()
+        while self.client.player is None:
+            pass
+        if self.client.player == "top_player":
+            self.player = self.top_player
+            self.opponent = self.bottom_player
+        elif self.client.player == "bottom_player":
+            self.player = self.bottom_player
+            self.opponent = self.top_player
+        else:
+            raise Exception("player not assigned")
+
         if self.control.is_set():
             self.ball.opacity = 1
             self.ids.start.text = 'Starting'
@@ -93,9 +103,11 @@ class PongGame(ScreenManager):
         if abs(center - playerpos) < width:
             return None
         elif playerpos > center and center < self.width - width:
-            self.player.center_x += self.jump
+            self.player.center_x += dp(20)
         elif playerpos < center and center > width:
-            self.player.center_x -= self.jump
+            self.player.center_x -= dp(20)
+
+        self.client.x = self.player.center_x
 
     def opponent_movement(self):
         pass

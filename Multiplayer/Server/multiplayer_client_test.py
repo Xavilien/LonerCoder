@@ -1,5 +1,6 @@
 import socket  # for sockets
 import sys  # for exit
+import json
 from threading import Thread
 
 
@@ -32,21 +33,21 @@ class Client(Thread):
 
     def run(self):
         self.s.sendall(self.x.encode('utf-8'))
-        reply = self.s.recv(4096).decode('utf-8')
+        reply = json.loads(self.s.recv(4096))
         self.player = reply
 
         while True: # Send some data t
 
             try:
                 # Set the whole string
-                self.s.sendall(self.x.encode('utf-8'))
+                self.s.sendall(str(self.x).encode('utf-8'))
             except socket.error:
                 # Send failed
                 print('Send failed')
                 sys.exit()
 
             # Now receive data
-            reply = self.s.recv(4096).decode('utf-8')
+            reply = json.loads(self.s.recv(4096))
             self.data = reply
             print(reply)
 
