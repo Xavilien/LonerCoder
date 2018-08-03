@@ -67,17 +67,23 @@ class PongGame(ScreenManager):
             pass
 
         self.client = Client(self.top_player.center_x)
-        self.client.start()
-        while self.client.player is None:
-            pass
-        if self.client.player == "top_player":
+        self.client.s.sendall(str(self.x).encode('utf-8'))
+        player = self.client.s.recv(4096).decode("utf8")
+        print(player)
+
+        if player == "top_player":
             self.player = self.top_player
             self.opponent = self.bottom_player
-        elif self.client.player == "bottom_player":
+        elif player == "bottom_player":
             self.player = self.bottom_player
             self.opponent = self.top_player
         else:
             raise Exception("player not assigned")
+
+        self.client.start()
+
+        while not len(self.client.data):
+            pass
 
         if self.control.is_set():
             self.ball.opacity = 1
@@ -110,10 +116,11 @@ class PongGame(ScreenManager):
         self.client.x = self.player.center_x
 
     def opponent_movement(self):
-        pass
+        self.opponent.center_x = self.client.data[1]
 
     def ball_movement(self):
-        pass
+        self.ball.center_x = self.client.data[0][0]
+        self.ball.center_y = self.client.data[0][1]
         
     def update(self, dt):
         self.player_movement()

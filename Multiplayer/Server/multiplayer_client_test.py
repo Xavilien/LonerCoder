@@ -15,7 +15,6 @@ class Client(Thread):
 
         self.x = x
         self.data = []
-        self.player = None
 
     def create_socket(self):
         # create an INET, STREAMing socket
@@ -32,12 +31,8 @@ class Client(Thread):
         print('Socket Connected to ' + self.host + ' on ip ' + self.host)
 
     def run(self):
-        self.s.sendall(self.x.encode('utf-8'))
-        reply = json.loads(self.s.recv(4096))
-        self.player = reply
-
-        while True: # Send some data t
-
+        while True:
+            print("loop running")
             try:
                 # Set the whole string
                 self.s.sendall(str(self.x).encode('utf-8'))
@@ -47,9 +42,7 @@ class Client(Thread):
                 sys.exit()
 
             # Now receive data
-            reply = json.loads(self.s.recv(4096))
-            self.data = reply
-            print(reply)
+            self.data = json.loads(self.s.recv(4096))
 
 
 if __name__ == "__main__":
