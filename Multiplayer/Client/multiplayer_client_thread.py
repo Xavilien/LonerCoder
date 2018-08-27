@@ -1,20 +1,23 @@
 import socket  # for sockets
 import sys  # for exit
 import json
-from threading import Thread
+from threading import Thread, Event
 
 
 class Client(Thread):
     s = None
-    host = '10.197.48.168'
+    host = 'localhost'
     port = 8888
 
-    def __init__(self, x):
+    def __init__(self, x, event):
         super(Client, self).__init__()
+        self.event = event
+
         self.create_socket()
 
         self.x = x
         self.data = []
+
 
     def create_socket(self):
         # create an INET, STREAMing socket
@@ -31,7 +34,7 @@ class Client(Thread):
         print('Socket Connected to ' + self.host + ' on ip ' + self.host)
 
     def run(self):
-        while True:
+        while self.event.is_set():
             try:
                 # Set the whole string
                 self.s.sendall(str(self.x).encode('utf-8'))
@@ -41,9 +44,15 @@ class Client(Thread):
                 sys.exit()
 
             # Now receive data
-            self.data = json.loads(self.s.recv(4096))
+            data = self.s.recv(4096)
+            try:
+                self.data = json.loads(data)
+            except json.JSONDecodeError:
+                pass
 
 
 if __name__ == "__main__":
-    client = Client()
+    control = Event()
+    control.set()
+    client = Client(1500, control)
     client.start()

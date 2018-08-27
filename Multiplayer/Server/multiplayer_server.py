@@ -11,7 +11,7 @@ from kivy.uix.screenmanager import ScreenManager
 from kivy.lang.builder import Builder
 from kivy.metrics import dp
 
-from multiplayer_server_thread2 import *
+from multiplayer_server_thread import *
 
 from kivy.config import Config
 
@@ -65,7 +65,7 @@ class PongGame(ScreenManager):
 
         self.current = 'play'
 
-        self.server = Server()
+        self.server = Server(self.control)
         self.server.start()
 
         self.waiting = threading.Thread(target=self.wait)
@@ -86,7 +86,7 @@ class PongGame(ScreenManager):
         if self.control.is_set():
             self.ball.opacity = 1
             self.ids.start.text = 'Starting'
-            Clock.schedule_once(self.start, 1)
+            Clock.schedule_once(self.start, 4)
 
     def start(self, dt):
         self.ids.start.text = ''
@@ -113,17 +113,20 @@ class PongGame(ScreenManager):
             self.ball.velocity_x *= -1  # Change direction so that ball doesn't go off screen
 
     def check_win(self):
-        # went of to a side to end game?
-        if self.ball.y < self.y:
-            # print("Top player has won")
-            self.server.winner = "top_player"
-            self.serve_ball()
+        if self.y < self.ball.y < self.height - 50:
+            return False
 
-        # Since it is very unlikely for the player to win, so the game crashes if that happens
-        if self.ball.y > self.height:
-            # print("Bottom player has won")
+        # If the ball goes below the screen, top_player has won
+        if self.ball.y <= self.y:
+            self.ids.start.text = "Top player has won"
+            self.server.winner = "top_player"
+
+        # If the ball goes above the screen, bottom_player has won
+        if self.ball.y + 50 >= self.height:
+            self.ids.start.text = "Bottom player has won"
             self.server.winner = "bottom_player"
-            self.serve_ball()
+
+        return True
 
     '''
     The positions of the paddles of each player are taken from the server thread in multiplayer_server_thread.py and are
@@ -131,15 +134,20 @@ class PongGame(ScreenManager):
     '''
 
     def update(self, dt):
-        self.ball.move()
-        self.server.data["Ball"] = [self.ball.x, self.ball.y]
+        if not self.check_win():
+            self.ball.move()
+            self.server.data["Ball"] = [self.ball.x, self.ball.y]
 
-        self.top_player.center_x = self.server.data["top_player"]
-        self.bottom_player.center_x = self.server.data["bottom_player"]
+            self.top_player.center_x = self.server.data["top_player"]
+            self.bottom_player.center_x = self.server.data["bottom_player"]
 
-        self.bounce()
-
-        self.check_win()
+            self.bounce()
+        else:
+            self.ball.center = self.center
+            self.ball.velocity = (0, 0)
+            Clock.schedule_once(lambda dt: self.serve_ball(), 3)
+            Clock.schedule_once(lambda dt: setattr(self.server, 'winner', 0), 2)
+            Clock.schedule_once(lambda dt: setattr(self.ids.start, 'text', ''), 2)
 
 
 class ServerApp(App):

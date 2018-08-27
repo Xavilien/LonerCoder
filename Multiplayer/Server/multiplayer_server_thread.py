@@ -1,38 +1,120 @@
-#!/usr/bin/env python3
-from socketserver import ThreadingMixIn
-from http.server import HTTPServer, BaseHTTPRequestHandler
-from urllib.parse import parse_qs
+import socket
+import sys
+from threading import Thread, Event
 import json
 
 
-data = {"ball": None}
+class Connection(Thread):
+    def __init__(self, connection, address, event):
+        super(Connection, self).__init__()
+        self.event = event
+
+        self.connection = connection
+        self.address = address
+        self.x = None
+        self.data = None
+
+    def run(self):
+        while self.event.is_set():
+            # Receiving from client
+            try:
+                data = self.connection.recv(4096)
+                try:
+                    x = json.loads(data)
+                    self.x = float(x)
+                except json.JSONDecodeError:
+                    pass
+
+                # print(self.x)
+                self.connection.sendall(json.dumps(self.data).encode('utf-8'))
+
+            except socket.error as msg:
+                print(msg)
+                break
 
 
-class Handler(BaseHTTPRequestHandler):
+class Server(Thread):
 
-    def do_GET(self):
-        params = parse_qs(self.rfile.read(int(self.headers.get("Content-length", 0))).decode("utf-8")) # is a dictionary
-        self.send_response(200)
-        self.send_header('Content-type', 'application/json')
-        self.end_headers()
-        self.wfile.write(bytes(json.dumps({'data': data}), "utf-8"))
-        return
+    def __init__(self, event):
+        super(Server, self).__init__()
+        self.event = event
 
-    def do_POST(self):
-        self.send_response(200)
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.socket_setup()
 
+        self.data = {"Ball": [], "top_player": -1, "bottom_player": -1}  # Positions of ball and both players
 
-class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
-    """Handle requests in a separate thread."""
+        self.winner = 0  # If the game has a winner
+
+        self.top_player = None
+        self.bottom_player = None
+
+    def socket_setup(self):
+        host = ''  # Symbolic name meaning all available interfaces
+        port = 8888  # Arbitrary non-privileged port
+
+        print('Socket created')
+
+        # Bind socket to local host and port
+        try:
+            self.s.bind((host, port))
+        except socket.error as msg:
+            print('Bind failed. Error: ' + str(msg))
+            sys.exit()
+        print("Bind succeeded")
+
+        # Start listening on socket
+        self.s.listen(10)
+        print("Listening...")
+
+    def run(self):
+        while True:
+            if self.top_player is None:
+                # Receive connection and initialise connection thread
+                connection, address = self.s.accept()
+                print(address[0] + ':' + str(address[1]))
+                self.top_player = Connection(connection, address, self.event)
+
+                # Get x-coordinate and tell player that he is the top player
+                data = json.loads(self.top_player.connection.recv(1024))
+                self.top_player.x = float(data)  # Set the x variable of connection thread to what was received
+                self.data["top_player"] = self.top_player.x
+                self.top_player.connection.sendall("top_player".encode('utf-8'))
+
+                self.top_player.data = [self.data["Ball"], self.data["bottom_player"]]
+                self.top_player.start()
+
+                print("Top started")
+
+            elif self.bottom_player is None:
+                # Receive connection and initialise connection thread
+                connection, address = self.s.accept()
+                print(address[0] + ':' + str(address[1]))
+                self.bottom_player = Connection(connection, address, self.event)
+
+                # Get x-coordinate and tell player that he is the bottom player
+                data = json.loads(self.bottom_player.connection.recv(1024))
+                self.bottom_player.x = float(data)
+                self.data["bottom_player"] = self.bottom_player.x
+                self.bottom_player.connection.sendall("bottom_player".encode('utf-8'))
+
+                # Set the data of both connection threads so thaht we can initialise the connection loop
+                self.bottom_player.data = [self.data["Ball"], self.data["top_player"]]
+                self.bottom_player.start()
+
+                print("Bottom started")
+
+            else:
+                self.data["top_player"] = self.top_player.x
+                self.data["bottom_player"] = self.bottom_player.x
+
+                self.top_player.data = [self.data["Ball"], self.data["bottom_player"], self.winner]
+                self.bottom_player.data = [self.data["Ball"], self.data["top_player"], self.winner]
 
 
 if __name__ == '__main__':
-
-    server = ThreadedHTTPServer(('localhost', 8000), Handler)
-    print('Starting server, use <Ctrl-C> to stop')
-    try:
-        server.serve_forever()
-    except KeyboardInterrupt:
-        server.shutdown()
-
-
+    control = Event()
+    control.set()
+    server = Server(control)
+    server.start()

@@ -2,7 +2,7 @@ import numpy as np
 import sys
 import tensorflow as tf
 import cv2
-from threading import Thread
+from threading import Thread, Event
 from time import sleep
 
 
@@ -106,3 +106,10 @@ class FaceDetection(Thread):
                     # print(self.x)
 
                     sleep(0.1)
+
+
+if __name__ == '__main__':
+    control = Event()
+    control.set()
+    detector = FaceDetection(control)  # Allow us to control the paddle using the player's body
+    detector.start()
