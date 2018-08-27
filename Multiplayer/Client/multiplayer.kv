@@ -50,7 +50,7 @@
             PongPaddle:
                 id: player_top
                 y: self.parent.height-self.height
-                center_x: self.parent.center_x - dp(100)
+                center_x: self.parent.center_x
 
                 Label:
                     id: top_text
@@ -63,7 +63,7 @@
             PongPaddle:
                 id: player_bottom
                 y: self.parent.y
-                center_x: self.parent.center_x - dp(100)
+                center_x: self.parent.center_x
 
                 Label:
                     id: bottom_text
@@ -72,3 +72,16 @@
                     center_x: self.parent.center_x
                     center_y: self.parent.center_y
                     color: 0, 0, 0, 1
+
+            Widget:
+                Label:
+                    id: top_score
+                    text: "0"
+                    center_x: dp(50)
+                    center_y: self.parent.parent.height * 0.75
+
+                Label:
+                    id: bottom_score
+                    text: "0"
+                    center_x: dp(50)
+                    center_y: self.parent.parent.height * 0.25

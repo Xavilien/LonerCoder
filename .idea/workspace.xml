@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer.kv" line="52" />
-    <bookmark url="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer.kv" line="65" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="43a9ba25-d77f-43c5-be8f-04be60848aed" name="Default" comment="Updated">
+    <list default="true" id="43a9ba25-d77f-43c5-be8f-04be60848aed" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Multiplayer/Client/multiplayer.kv" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Client/multiplayer.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Multiplayer/Client/multiplayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Client/multiplayer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplayer/Client/tfimgcontroller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Client/tfimgcontroller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_client_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Client/multiplayer_client_thread.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Multiplayer/Server/server.kv" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplayer/Server/server.kv" afterDir="false" />
     </list>
     <ignored path="App/build/" />
     <ignored path="App/dist/" />
@@ -28,12 +22,12 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/LonerCoder$ai2server.coverage" NAME="ai2server Coverage Results" MODIFIED="1517314623248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/research/object_detection" />
     <SUITE FILE_PATH="coverage/LonerCoder$game.coverage" NAME="game Coverage Results" MODIFIED="1517044809436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/LonerCoder$multiplayer_server.coverage" NAME="multiplayer_server Coverage Results" MODIFIED="1535382815563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Multiplayer/Server" />
+    <SUITE FILE_PATH="coverage/LonerCoder$multiplayer_server.coverage" NAME="multiplayer_server Coverage Results" MODIFIED="1535385180484" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Multiplayer/Server" />
     <SUITE FILE_PATH="coverage/LonerCoder$multiplayer_server_thread2.coverage" NAME="multiplayer_server_thread2 Coverage Results" MODIFIED="1533290429833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Multiplayer/Server" />
     <SUITE FILE_PATH="coverage/LonerCoder$multiplayer_server__1_.coverage" NAME="multiplayer_server (1) Coverage Results" MODIFIED="1533351645013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Multiplayer/Server" />
     <SUITE FILE_PATH="coverage/LonerCoder$multiplayer_client_test.coverage" NAME="multiplayer_client_test Coverage Results" MODIFIED="1535362469497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Multiplayer/Server" />
     <SUITE FILE_PATH="coverage/LonerCoder$tfimgcontroller.coverage" NAME="tfimgcontroller Coverage Results" MODIFIED="1534929116878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Multiplayer/Client" />
-    <SUITE FILE_PATH="coverage/LonerCoder$multiplayer.coverage" NAME="multiplayer Coverage Results" MODIFIED="1535382814255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Multiplayer/Client" />
+    <SUITE FILE_PATH="coverage/LonerCoder$multiplayer.coverage" NAME="multiplayer Coverage Results" MODIFIED="1535385177599" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Multiplayer/Client" />
     <SUITE FILE_PATH="coverage/LonerCoder$multiplayer__1_.coverage" NAME="multiplayer (1) Coverage Results" MODIFIED="1518074780469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
@@ -76,22 +70,10 @@
       <file leaf-file-name="multiplayer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-167">
-              <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+            <state relative-caret-position="263">
+              <caret line="175" column="27" selection-start-line="175" selection-start-column="27" selection-end-line="175" selection-end-column="27" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="multiplayer_client_thread.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer_client_thread.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="55" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -100,8 +82,8 @@
       <file leaf-file-name="multiplayer.kv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer.kv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="65" column="55" selection-start-line="65" selection-start-column="55" selection-end-line="65" selection-end-column="55" />
+            <state relative-caret-position="314">
+              <caret line="86" column="62" selection-start-line="86" selection-start-column="62" selection-end-line="86" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -109,8 +91,8 @@
       <file leaf-file-name="multiplayer_server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="123" column="32" selection-start-line="123" selection-start-column="32" selection-end-line="123" selection-end-column="32" />
+            <state relative-caret-position="356">
+              <caret line="135" column="7" lean-forward="true" selection-start-line="135" selection-start-column="7" selection-end-line="135" selection-end-column="7" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -118,11 +100,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multiplayer_server_thread.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread.py">
+      <file leaf-file-name="server.kv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Multiplayer/Server/server.kv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1320">
-              <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
+            <state relative-caret-position="164">
+              <caret line="58" column="12" selection-start-line="58" selection-start-column="12" selection-end-line="69" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -209,11 +191,12 @@
         <option value="$PROJECT_DIR$/Multiplayer/Client/tfimgcontroller.py" />
         <option value="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread2.py" />
         <option value="$PROJECT_DIR$/Multiplayer/Server/multiplayer_client_test.py" />
-        <option value="$PROJECT_DIR$/Multiplayer/Client/multiplayer.kv" />
-        <option value="$PROJECT_DIR$/Multiplayer/Client/multiplayer.py" />
         <option value="$PROJECT_DIR$/Multiplayer/Client/multiplayer_client_thread.py" />
         <option value="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread.py" />
+        <option value="$PROJECT_DIR$/Multiplayer/Server/server.kv" />
         <option value="$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py" />
+        <option value="$PROJECT_DIR$/Multiplayer/Client/multiplayer.kv" />
+        <option value="$PROJECT_DIR$/Multiplayer/Client/multiplayer.py" />
       </list>
     </option>
   </component>
@@ -454,13 +437,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1517018996159</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Test">
-      <created>1517075703889</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1517075703889</updated>
     </task>
     <task id="LOCAL-00028" summary="Test">
       <created>1517099971854</created>
@@ -798,7 +774,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533292454102</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Updated multiplayer functionality">
+      <created>1535383127314</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1535383127316</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TodoView">
@@ -817,17 +800,17 @@
       <window_info anchor="bottom" id="TODO" order="8" weight="0.32941177" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5177706" side_tool="true" weight="0.34705883" />
       <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4822294" visible="true" weight="0.34705883" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.47738287" weight="0.31617647" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32352942" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4822294" visible="true" weight="0.34705883" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.48585287" weight="0.29178885" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49879518" visible="true" weight="0.273021" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4954955" visible="true" weight="0.27705976" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" />
-      <window_info id="Structure" order="1" sideWeight="0.50120485" side_tool="true" weight="0.273021" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Structure" order="1" sideWeight="0.5045045" side_tool="true" weight="0.27705976" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.398827" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -840,30 +823,30 @@
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="3" weight="0.5" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.273021" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.47738287" weight="0.31617647" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48303714" visible="true" weight="0.3882353" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.273021" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24964234" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="8" weight="0.32941177" />
-      <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48303714" visible="true" weight="0.3882353" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32352942" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.398827" />
       <window_info anchor="right" x="0" y="0" width="270" height="577" id="Documentation" order="5" weight="0.3296875" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.48585287" weight="0.29178885" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5169628" side_tool="true" weight="0.32058823" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="3" weight="0.5" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.47738287" weight="0.31617647" />
+      <window_info anchor="right" id="SciView" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Messages" order="10" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="3" weight="0.5" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32352942" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -925,7 +908,8 @@
     <MESSAGE value="Multiplayer Pong V1.6&#10;Made kv file less absolute" />
     <MESSAGE value="Files required for tensorflow" />
     <MESSAGE value="Updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated" />
+    <MESSAGE value="Updated multiplayer functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated multiplayer functionality" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1017,13 +1001,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Multiplayer/Server/server.kv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="44" column="29" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="uml://Python/multiplayer.PongGame">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
@@ -1038,9 +1015,10 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="137.5" y="172.5" />
+          <settings layout="Hierarchic Group" zoom="1.0" x="138.0" y="173.0" />
           <SelectedNodes />
           <Categories />
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
@@ -1061,16 +1039,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer_client_thread.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="55" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_server_thread.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1320">
@@ -1078,27 +1046,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer_client_thread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="55" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Multiplayer/Server/server.kv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="58" column="12" selection-start-line="58" selection-start-column="12" selection-end-line="69" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer.kv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="86" column="62" selection-start-line="86" selection-start-column="62" selection-end-line="86" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-167">
-          <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+        <state relative-caret-position="263">
+          <caret line="175" column="27" selection-start-line="175" selection-start-column="27" selection-end-line="175" selection-end-column="27" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Multiplayer/Client/multiplayer.kv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="65" column="55" selection-start-line="65" selection-start-column="55" selection-end-line="65" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Multiplayer/Server/multiplayer_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="123" column="32" selection-start-line="123" selection-start-column="32" selection-end-line="123" selection-end-column="32" />
+        <state relative-caret-position="356">
+          <caret line="135" column="7" lean-forward="true" selection-start-line="135" selection-start-column="7" selection-end-line="135" selection-end-column="7" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

@@ -18,7 +18,6 @@
 
 <Label>:
     font_size: dp(35)
-    center_x: self.parent.width*0.5
 
 <PongGame>:
     ball: pong_ball
@@ -38,6 +37,7 @@
 
             Label:
                 id: start
+                center_x: self.parent.center_x
                 center_y: self.parent.height*0.75 - dp(50)
                 text: "Get Ready"
 
@@ -55,4 +55,17 @@
                 id: player_top
                 y: self.parent.height-self.height
                 center_x: self.parent.center_x
+
+            Widget:
+                Label:
+                    id: top_score
+                    text: "0"
+                    center_x: dp(50)
+                    center_y: self.parent.parent.height * 0.75
+
+                Label:
+                    id: bottom_score
+                    text: "0"
+                    center_x: dp(50)
+                    center_y: self.parent.parent.height * 0.25
 

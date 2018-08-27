@@ -113,18 +113,20 @@ class PongGame(ScreenManager):
             self.ball.velocity_x *= -1  # Change direction so that ball doesn't go off screen
 
     def check_win(self):
-        if self.y < self.ball.y < self.height - 50:
+        if self.y < self.ball.y < self.height - 50:  # If the ball is still in play
             return False
 
         # If the ball goes below the screen, top_player has won
         if self.ball.y <= self.y:
             self.ids.start.text = "Top player has won"
             self.server.winner = "top_player"
+            self.ids.top_score.text = str(int(self.ids.top_score.text)+1)
 
         # If the ball goes above the screen, bottom_player has won
         if self.ball.y + 50 >= self.height:
             self.ids.start.text = "Bottom player has won"
             self.server.winner = "bottom_player"
+            self.ids.bottom_score.text = str(int(self.ids.bottom_score.text)+1)
 
         return True
 
@@ -134,18 +136,27 @@ class PongGame(ScreenManager):
     '''
 
     def update(self, dt):
-        if not self.check_win():
+        if not self.check_win():  # If the ball is still in play
             self.ball.move()
+
+            # Update ball coordinates in server thread data
             self.server.data["Ball"] = [self.ball.x, self.ball.y]
 
+            # Update the positions of the paddles on the screen
             self.top_player.center_x = self.server.data["top_player"]
             self.bottom_player.center_x = self.server.data["bottom_player"]
 
+            # Check if ball hits a paddle
             self.bounce()
         else:
+            # Return the ball to the centre, stationary
             self.ball.center = self.center
             self.ball.velocity = (0, 0)
+
+            # Start next round after 3 seconds
             Clock.schedule_once(lambda dt: self.serve_ball(), 3)
+
+            # Remove text after 2 seconds
             Clock.schedule_once(lambda dt: setattr(self.server, 'winner', 0), 2)
             Clock.schedule_once(lambda dt: setattr(self.ids.start, 'text', ''), 2)
 
