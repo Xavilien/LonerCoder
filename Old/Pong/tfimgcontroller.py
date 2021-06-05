@@ -2,14 +2,13 @@ import numpy as np
 import sys
 import tensorflow as tf
 import cv2
-from threading import Thread, Event
-from time import sleep
+from threading import Thread
 
 
 class FaceDetection(Thread):
     cap = cv2.VideoCapture(0)
 
-    path = "/Users/xavilien/Desktop/School/Secondary/Upper Sec/Year 4/Non-Core/CEP/Hack&Roll/LonerCoder/"
+    path = "/Users/xavilien/Desktop/School/1Secondary/2018/Non-Core/CEP/LonerCoder/"
 
     # This is needed since the notebook is stored in the object_detection folder.
     sys.path.append("..")
@@ -34,9 +33,9 @@ class FaceDetection(Thread):
     # for a list of other models that can be run out-of-the-box with varying speeds and accuracies.
 
     # What model to download.
-    # MODEL_FILE = MODEL_NAME + '.tar.gz'
-    # DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
     MODEL_NAME = 'ssd_mobilenet_v1_coco_11_06_2017'
+    MODEL_FILE = MODEL_NAME + '.tar.gz'
+    DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
 
     # Path to frozen detection graph. This is the actual model that is used for the object detection.
     PATH_TO_CKPT = path + '/models/research/object_detection/' + MODEL_NAME + '/frozen_inference_graph.pb'
@@ -65,6 +64,7 @@ class FaceDetection(Thread):
     category_index = label_map_util.create_category_index(categories)
 
     x = None
+    stop = False
 
     def __init__(self, event):
         super(FaceDetection, self).__init__()
@@ -100,20 +100,7 @@ class FaceDetection(Thread):
                     # Get only the people in the frame
                     _, person_elements = np.where(classes == 1)
 
-                    people = [boxes[0][i] for i in person_elements if scores[0][i] > 0.5]
-                    sizes = [(i[3]-i[1])*(i[2]-i[0]) for i in people]
-                    person = people[sizes.index(max(sizes))]
-
-
                     # Get the x-coordinate of the person by taking the average x-coordinate of two corners
-                    # person = boxes[0][person_elements[0]]
+                    person = boxes[0][person_elements[0]]
                     self.x = (person[1] + person[3]) / 2
-
-                    sleep(0.1)
-
-
-if __name__ == '__main__':
-    control = Event()
-    control.set()
-    detector = FaceDetection(control)  # Allow us to control the paddle using the player's body
-    detector.start()
+                    # print(self.x)

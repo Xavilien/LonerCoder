@@ -50,6 +50,8 @@ class Server(Thread):
         self.top_player = None
         self.bottom_player = None
 
+        self.score = ["0", "0"]
+
     def socket_setup(self):
         host = ''  # Symbolic name meaning all available interfaces
         port = 8888  # Arbitrary non-privileged port
@@ -109,8 +111,8 @@ class Server(Thread):
                 self.data["top_player"] = self.top_player.x
                 self.data["bottom_player"] = self.bottom_player.x
 
-                self.top_player.data = [self.data["Ball"], self.data["bottom_player"], self.winner]
-                self.bottom_player.data = [self.data["Ball"], self.data["top_player"], self.winner]
+                self.top_player.data = [self.data["Ball"], self.data["bottom_player"], self.winner, self.score]
+                self.bottom_player.data = [self.data["Ball"], self.data["top_player"], self.winner, self.score]
 
 
 if __name__ == '__main__':

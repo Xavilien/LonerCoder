@@ -167,10 +167,9 @@ class PongGame(ScreenManager):
         else:
             self.ids.start.text = ""
 
-        if winner == "top_player":
-            self.ids.top_score.text = str(int(self.ids.top_score.text)+1)
-        elif winner == "bottom_player":
-            self.ids.bottom_score.text = str(int(self.ids.bottom_score.text)+1)
+        score = self.client.data[3]
+        self.ids.top_score.text = score[0]
+        self.ids.bottom_score.text = score[1]
 
     '''
     Update the game at every clock cycle

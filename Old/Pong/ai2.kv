@@ -1,0 +1,62 @@
+#: kivy 1.0.10
+#: import datetime datetime
+
+<PongBall>:
+    size: 50, 50
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<PongPaddle>:
+    size: 200, 25
+    canvas:
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+<PongGame>:
+    ball: pong_ball
+    player1: player_top
+    ai_agent: player_bottom
+
+    canvas:
+        Rectangle:
+            pos: 0, self.center_y-5
+            size: self.width, 10
+
+    Label:
+        id: stopwatch
+        font_size: 70
+        center_x: root.width * 0.5
+        top: root.top - 20
+        text: str(root.player1.time) + 's'
+
+    Label:
+        id: highscore
+        font_size: 70
+        center_x: root.width * 0.5
+        top: root.top - 100
+        text: 'Highscore: ' + str(root.player1.highscore) + 's'
+
+    Label:
+        id: start
+        font_size: 70
+        center_x: root.width*0.5
+        center_y: root.height*0.75-100
+        text: "Get Ready"
+
+    PongBall:
+        id: pong_ball
+        center: self.parent.center
+        opacity: 0
+
+    PongPaddle:
+        id: player_top
+        y: root.y
+        center_x: root.center_x
+
+    PongPaddle:
+        id: player_bottom
+        y: root.height-self.height
+        center_x: root.center_x

@@ -120,13 +120,15 @@ class PongGame(ScreenManager):
         if self.ball.y <= self.y:
             self.ids.start.text = "Top player has won"
             self.server.winner = "top_player"
-            self.ids.top_score.text = str(int(self.ids.top_score.text)+1)
+            self.ids.top_score.text = str(int(self.ids.top_score.text)+1)  # Update score
 
         # If the ball goes above the screen, bottom_player has won
         if self.ball.y + 50 >= self.height:
             self.ids.start.text = "Bottom player has won"
             self.server.winner = "bottom_player"
-            self.ids.bottom_score.text = str(int(self.ids.bottom_score.text)+1)
+            self.ids.bottom_score.text = str(int(self.ids.bottom_score.text)+1)  # Update score
+
+        self.server.score = [self.ids.top_score.text, self.ids.bottom_score.text]
 
         return True
 
